@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6162" systemVersion="14A238h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Q7f-jW-b6u">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6160"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Main View Controller-->
+        <scene sceneID="P8W-tJ-0Cd">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Q7f-jW-b6u" customClass="SCMainViewController" customModule="StellarCram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="5G1-gk-A21"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aev-wu-6ix"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <view key="view" contentMode="scaleToFill" id="ame-Aq-O8e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Canvas1a_offwhite_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pc1-MO-jOz">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfy-Q4-obx" userLabel="OuterView">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-I9-6eh">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="New" image="plus-25.png" id="YLE-T7-41V"/>
+                                    <tabBarItem title="Rematch" image="process-25.png" id="MOc-om-iX3"/>
+                                    <tabBarItem title="Info" image="about-25.png" id="OH7-Vj-FWC"/>
+                                    <tabBarItem title="" id="YR0-EZ-ETD"/>
+                                    <tabBarItem title="Confirm Move" image="checkmark-25.png" id="PE6-1f-7f7"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pc1-MO-jOz" secondAttribute="trailing" id="0Jg-f9-ivq"/>
+                            <constraint firstItem="pc1-MO-jOz" firstAttribute="top" secondItem="5G1-gk-A21" secondAttribute="top" id="F9q-Uu-nUH"/>
+                            <constraint firstItem="mfy-Q4-obx" firstAttribute="top" secondItem="5G1-gk-A21" secondAttribute="bottom" id="JR6-Xx-SAt"/>
+                            <constraint firstItem="m5c-I9-6eh" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="LBe-6a-9en"/>
+                            <constraint firstItem="Aev-wu-6ix" firstAttribute="top" secondItem="m5c-I9-6eh" secondAttribute="bottom" id="Mp8-9O-ltF"/>
+                            <constraint firstItem="pc1-MO-jOz" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="Z0X-uC-8Ti"/>
+                            <constraint firstItem="mfy-Q4-obx" firstAttribute="bottom" secondItem="m5c-I9-6eh" secondAttribute="top" id="bR4-ji-g9N"/>
+                            <constraint firstAttribute="trailing" secondItem="mfy-Q4-obx" secondAttribute="trailing" id="jzq-Rh-RPz"/>
+                            <constraint firstAttribute="trailing" secondItem="m5c-I9-6eh" secondAttribute="trailing" id="lha-po-mq3"/>
+                            <constraint firstItem="Aev-wu-6ix" firstAttribute="top" secondItem="pc1-MO-jOz" secondAttribute="bottom" id="ydw-bb-zAN"/>
+                            <constraint firstItem="mfy-Q4-obx" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="zUp-kc-Tcr"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="outerView" destination="mfy-Q4-obx" id="Q1t-eU-s0E"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sYb-bk-bLK" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="704" y="135"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Canvas1a_offwhite_1.png" width="1000" height="800"/>
+        <image name="about-25.png" width="25" height="25"/>
+        <image name="checkmark-25.png" width="25" height="25"/>
+        <image name="plus-25.png" width="25" height="25"/>
+        <image name="process-25.png" width="25" height="25"/>
+    </resources>
 </document>

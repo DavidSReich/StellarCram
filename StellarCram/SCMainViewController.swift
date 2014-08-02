@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SCMainViewController.swift
 //  StellarCram
 //
 //  Created by David S Reich on 2/08/2014.
@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SCMainViewController: UIViewController {
+    @IBOutlet weak var outerView: UIView!
                             
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nibself.
+        self.outerView.layer.borderColor = UIColor.redColor().CGColor
+        self.outerView.layer.borderWidth = 1
     }
 
     override func didReceiveMemoryWarning() {
