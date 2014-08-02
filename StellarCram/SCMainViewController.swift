@@ -10,12 +10,13 @@ import UIKit
 
 class SCMainViewController: UIViewController {
     @IBOutlet weak var outerView: UIView!
+//    @IBOutlet weak var boardContainerView: UIView!
                             
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nibself.
-        self.outerView.layer.borderColor = UIColor.redColor().CGColor
-        self.outerView.layer.borderWidth = 1
+//        let boardView = SCBoardView(parentView: self.view)
+//        self.view.addSubview(boardView)
     }
 
     override func didReceiveMemoryWarning() {

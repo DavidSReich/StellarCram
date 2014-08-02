@@ -1,62 +1,115 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Q7f-jW-b6u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hfx-sd-PEp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
-        <scene sceneID="P8W-tJ-0Cd">
+        <scene sceneID="sDz-GG-yKq">
             <objects>
-                <viewController id="Q7f-jW-b6u" customClass="SCMainViewController" customModule="StellarCram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hfx-sd-PEp" customClass="SCMainViewController" customModule="StellarCram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5G1-gk-A21"/>
-                        <viewControllerLayoutGuide type="bottom" id="Aev-wu-6ix"/>
+                        <viewControllerLayoutGuide type="top" id="Lj5-z0-syq"/>
+                        <viewControllerLayoutGuide type="bottom" id="ce7-5K-GxS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ame-Aq-O8e">
+                    <view key="view" contentMode="scaleToFill" id="7V0-ZU-g3s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Canvas1a_offwhite_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pc1-MO-jOz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Canvas1a_offwhite_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="4VN-zw-xjF">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfy-Q4-obx" userLabel="OuterView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vit-Ag-kdj" userLabel="OuterView">
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display messages for the player!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Di5-s5-aJn">
+                                        <rect key="frame" x="20" y="8" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-jR-iCc">
+                                        <rect key="frame" x="30" y="-20" width="540" height="540"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jCZ-jR-iCc" secondAttribute="height" multiplier="1:1" id="TUN-eV-ufg"/>
+                                        </constraints>
+                                        <variation key="heightClass=regular" misplaced="YES">
+                                            <rect key="frame" x="30" y="96" width="540" height="540"/>
+                                        </variation>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jCZ-jR-iCc" firstAttribute="centerY" secondItem="Vit-Ag-kdj" secondAttribute="centerY" id="DQc-6p-8UW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Di5-s5-aJn" secondAttribute="trailing" constant="20" id="Mn7-4p-w2P"/>
+                                    <constraint firstAttribute="trailing" secondItem="jCZ-jR-iCc" secondAttribute="trailing" constant="30" id="QME-Kj-gia"/>
+                                    <constraint firstItem="jCZ-jR-iCc" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="30" id="bs6-oT-gGg"/>
+                                    <constraint firstItem="Di5-s5-aJn" firstAttribute="top" secondItem="Vit-Ag-kdj" secondAttribute="top" constant="8" id="djY-sd-5eM"/>
+                                    <constraint firstItem="Di5-s5-aJn" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="20" id="hd4-Ip-4IR"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DQc-6p-8UW"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="600" height="731"/>
+                                    <mask key="constraints">
+                                        <include reference="DQc-6p-8UW"/>
+                                    </mask>
+                                </variation>
                             </view>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5c-I9-6eh">
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sop-Q8-zhT">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="z4G-W4-Ow7"/>
+                                </constraints>
                                 <items>
-                                    <tabBarItem title="New" image="plus-25.png" id="YLE-T7-41V"/>
-                                    <tabBarItem title="Rematch" image="process-25.png" id="MOc-om-iX3"/>
-                                    <tabBarItem title="Info" image="about-25.png" id="OH7-Vj-FWC"/>
-                                    <tabBarItem title="" id="YR0-EZ-ETD"/>
-                                    <tabBarItem title="Confirm Move" image="checkmark-25.png" id="PE6-1f-7f7"/>
+                                    <tabBarItem title="New" image="plus-25.png" id="I3e-Aa-jfE"/>
+                                    <tabBarItem title="Rematch" image="process-25.png" id="eD8-HK-xwe"/>
+                                    <tabBarItem title="Info" image="about-25.png" id="F8k-WZ-TSN"/>
+                                    <tabBarItem title="" id="CpY-4v-UNP" userLabel="spacer"/>
+                                    <tabBarItem title="Confirm Move" image="checkmark-25.png" id="yYm-gT-vAQ"/>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="z4G-W4-Ow7"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="751" width="600" height="49"/>
+                                    <mask key="constraints">
+                                        <include reference="z4G-W4-Ow7"/>
+                                    </mask>
+                                </variation>
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="pc1-MO-jOz" secondAttribute="trailing" id="0Jg-f9-ivq"/>
-                            <constraint firstItem="pc1-MO-jOz" firstAttribute="top" secondItem="5G1-gk-A21" secondAttribute="top" id="F9q-Uu-nUH"/>
-                            <constraint firstItem="mfy-Q4-obx" firstAttribute="top" secondItem="5G1-gk-A21" secondAttribute="bottom" id="JR6-Xx-SAt"/>
-                            <constraint firstItem="m5c-I9-6eh" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="LBe-6a-9en"/>
-                            <constraint firstItem="Aev-wu-6ix" firstAttribute="top" secondItem="m5c-I9-6eh" secondAttribute="bottom" id="Mp8-9O-ltF"/>
-                            <constraint firstItem="pc1-MO-jOz" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="Z0X-uC-8Ti"/>
-                            <constraint firstItem="mfy-Q4-obx" firstAttribute="bottom" secondItem="m5c-I9-6eh" secondAttribute="top" id="bR4-ji-g9N"/>
-                            <constraint firstAttribute="trailing" secondItem="mfy-Q4-obx" secondAttribute="trailing" id="jzq-Rh-RPz"/>
-                            <constraint firstAttribute="trailing" secondItem="m5c-I9-6eh" secondAttribute="trailing" id="lha-po-mq3"/>
-                            <constraint firstItem="Aev-wu-6ix" firstAttribute="top" secondItem="pc1-MO-jOz" secondAttribute="bottom" id="ydw-bb-zAN"/>
-                            <constraint firstItem="mfy-Q4-obx" firstAttribute="leading" secondItem="ame-Aq-O8e" secondAttribute="leading" id="zUp-kc-Tcr"/>
+                            <constraint firstItem="Vit-Ag-kdj" firstAttribute="top" secondItem="Lj5-z0-syq" secondAttribute="bottom" id="0C5-2T-j6w"/>
+                            <constraint firstItem="4VN-zw-xjF" firstAttribute="top" secondItem="Lj5-z0-syq" secondAttribute="top" id="C0h-VP-hJG"/>
+                            <constraint firstAttribute="trailing" secondItem="Vit-Ag-kdj" secondAttribute="trailing" id="DaQ-Nh-d6d"/>
+                            <constraint firstItem="ce7-5K-GxS" firstAttribute="top" secondItem="sop-Q8-zhT" secondAttribute="bottom" id="FMK-0w-hus"/>
+                            <constraint firstItem="ce7-5K-GxS" firstAttribute="top" secondItem="4VN-zw-xjF" secondAttribute="bottom" id="QOR-IF-gfi"/>
+                            <constraint firstItem="Vit-Ag-kdj" firstAttribute="bottom" secondItem="sop-Q8-zhT" secondAttribute="top" id="ULC-hz-MIV"/>
+                            <constraint firstItem="4VN-zw-xjF" firstAttribute="leading" secondItem="7V0-ZU-g3s" secondAttribute="leading" id="dFa-xM-O3m"/>
+                            <constraint firstAttribute="trailing" secondItem="sop-Q8-zhT" secondAttribute="trailing" id="fX7-wb-xDS"/>
+                            <constraint firstAttribute="trailing" secondItem="4VN-zw-xjF" secondAttribute="trailing" id="hkL-F7-72W"/>
+                            <constraint firstItem="sop-Q8-zhT" firstAttribute="leading" secondItem="7V0-ZU-g3s" secondAttribute="leading" id="xdW-m1-37z"/>
+                            <constraint firstItem="Vit-Ag-kdj" firstAttribute="leading" secondItem="7V0-ZU-g3s" secondAttribute="leading" id="zWt-F2-V95"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="outerView" destination="mfy-Q4-obx" id="Q1t-eU-s0E"/>
+                        <outlet property="outerView" destination="Vit-Ag-kdj" id="x62-Iy-VbW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sYb-bk-bLK" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n7n-7J-6ko" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="135"/>
+            <point key="canvasLocation" x="735" y="91.5"/>
         </scene>
     </scenes>
     <resources>

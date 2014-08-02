@@ -28,6 +28,7 @@
 		634E0545198CAB55009625C6 /* checkmark-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0544198CAB55009625C6 /* checkmark-25.png */; };
 		634E0547198CAB5F009625C6 /* checkmark-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0546198CAB5F009625C6 /* checkmark-32.png */; };
 		634E0549198CAB6C009625C6 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0548198CAB6C009625C6 /* checkmark-50.png */; };
+		634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E054A198CBE33009625C6 /* SCBoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		634E0544198CAB55009625C6 /* checkmark-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-25.png"; sourceTree = "<group>"; };
 		634E0546198CAB5F009625C6 /* checkmark-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-32.png"; sourceTree = "<group>"; };
 		634E0548198CAB6C009625C6 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
+		634E054A198CBE33009625C6 /* SCBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCBoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				634E050E198C8327009625C6 /* Main.storyboard */,
 				634E0511198C8327009625C6 /* Images.xcassets */,
 				634E0508198C8327009625C6 /* Supporting Files */,
+				634E054A198CBE33009625C6 /* SCBoardView.swift */,
 			);
 			path = StellarCram;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				634E050B198C8327009625C6 /* AppDelegate.swift in Sources */,
+				634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */,
 				634E0528198C8C45009625C6 /* SCMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +475,7 @@
 				634E0523198C8327009625C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		634E0524198C8327009625C6 /* Build configuration list for PBXNativeTarget "StellarCramTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +484,7 @@
 				634E0526198C8327009625C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
