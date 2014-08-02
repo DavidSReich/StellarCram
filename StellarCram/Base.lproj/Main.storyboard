@@ -29,15 +29,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-jR-iCc">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-jR-iCc" userLabel="BoardView" customClass="SCBoardView" customModule="StellarCram" customModuleProvider="target">
                                         <rect key="frame" x="30" y="-20" width="540" height="540"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jCZ-jR-iCc" secondAttribute="height" multiplier="1:1" id="TUN-eV-ufg"/>
                                         </constraints>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="30" y="96" width="540" height="540"/>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -48,15 +45,19 @@
                                     <constraint firstItem="jCZ-jR-iCc" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="30" id="bs6-oT-gGg"/>
                                     <constraint firstItem="Di5-s5-aJn" firstAttribute="top" secondItem="Vit-Ag-kdj" secondAttribute="top" constant="8" id="djY-sd-5eM"/>
                                     <constraint firstItem="Di5-s5-aJn" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="20" id="hd4-Ip-4IR"/>
+                                    <constraint firstItem="Di5-s5-aJn" firstAttribute="bottom" secondItem="jCZ-jR-iCc" secondAttribute="top" constant="67" id="s39-k3-fyB">
+                                        <variation key="heightClass=regular" constant="-8"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="s39-k3-fyB"/>
                                         <exclude reference="DQc-6p-8UW"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="20" width="600" height="731"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
+                                        <include reference="s39-k3-fyB"/>
                                         <include reference="DQc-6p-8UW"/>
                                     </mask>
                                 </variation>
@@ -79,8 +80,7 @@
                                         <exclude reference="z4G-W4-Ow7"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="751" width="600" height="49"/>
+                                <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="z4G-W4-Ow7"/>
                                     </mask>
@@ -104,6 +104,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="boardView" destination="jCZ-jR-iCc" id="WrT-iP-Kgg"/>
                         <outlet property="outerView" destination="Vit-Ag-kdj" id="x62-Iy-VbW"/>
                     </connections>
                 </viewController>

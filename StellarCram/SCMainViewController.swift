@@ -10,13 +10,12 @@ import UIKit
 
 class SCMainViewController: UIViewController {
     @IBOutlet weak var outerView: UIView!
-//    @IBOutlet weak var boardContainerView: UIView!
-                            
+    @IBOutlet weak var boardView: SCBoardView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nibself.
-//        let boardView = SCBoardView(parentView: self.view)
-//        self.view.addSubview(boardView)
+        boardView.setupBoard()
     }
 
     override func didReceiveMemoryWarning() {

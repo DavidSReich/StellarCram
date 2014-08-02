@@ -11,25 +11,14 @@ import UIKit
 
 class SCBoardView : UIView {
 
-    init(parentView: UIView) {
-        //resize and center ...
-        let parentSize = parentView.frame.size
-        var shortestSide = min(parentSize.height, parentSize.width)
-        shortestSide *= 0.9
-
-        let newFrame = CGRectMake(0, 0, shortestSide, shortestSide)
-        super.init(frame:newFrame)
-
-        var center: CGPoint;
-        if (parentSize.height < parentSize.width) {
-            center = CGPointMake(parentSize.height / 2, parentSize.width / 2)
-        }
-        else {
-            center = CGPointMake(parentSize.width / 2, parentSize.height / 2)
-        }
-        self.center = center;
+    func setupBoard() {
         self.layer.borderColor = UIColor.greenColor().CGColor
         self.layer.borderWidth = 1
+
+        //create cells - 8x8
+        //if R+C is even then color1, else color2
+        //create horizontal boundaries
+        //create vertical boundaries
     }
     
 }
