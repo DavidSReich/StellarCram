@@ -29,6 +29,8 @@
 		634E0547198CAB5F009625C6 /* checkmark-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0546198CAB5F009625C6 /* checkmark-32.png */; };
 		634E0549198CAB6C009625C6 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0548198CAB6C009625C6 /* checkmark-50.png */; };
 		634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E054A198CBE33009625C6 /* SCBoardView.swift */; };
+		63BAFB29198E7EF900A3F007 /* SCCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BAFB28198E7EF900A3F007 /* SCCellView.swift */; };
+		63CD9E9A19907F30003482DA /* SCPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD9E9919907F30003482DA /* SCPlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		634E0546198CAB5F009625C6 /* checkmark-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-32.png"; sourceTree = "<group>"; };
 		634E0548198CAB6C009625C6 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
 		634E054A198CBE33009625C6 /* SCBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCBoardView.swift; sourceTree = "<group>"; };
+		63BAFB28198E7EF900A3F007 /* SCCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCellView.swift; sourceTree = "<group>"; };
+		63CD9E9919907F30003482DA /* SCPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 				634E0511198C8327009625C6 /* Images.xcassets */,
 				634E0508198C8327009625C6 /* Supporting Files */,
 				634E054A198CBE33009625C6 /* SCBoardView.swift */,
+				63BAFB28198E7EF900A3F007 /* SCCellView.swift */,
+				63CD9E9919907F30003482DA /* SCPlayView.swift */,
 			);
 			path = StellarCram;
 			sourceTree = "<group>";
@@ -283,9 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BAFB29198E7EF900A3F007 /* SCCellView.swift in Sources */,
 				634E050B198C8327009625C6 /* AppDelegate.swift in Sources */,
 				634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */,
 				634E0528198C8C45009625C6 /* SCMainViewController.swift in Sources */,
+				63CD9E9A19907F30003482DA /* SCPlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
