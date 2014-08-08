@@ -17,9 +17,59 @@ class SCBoardView : UIView {
     let numRows = kNumRowsCols;
     var cells = Array<Array<SCCellView>>()
     var horizontalPlays = Array<Array<SCPlayView>>()
+    var verticalPlays = Array<Array<SCPlayView>>()
     var cellSize:CGFloat = 0
 
     func setupBoard() {
+#if false
+        var parent: UIView? = self
+        do {
+            NSLog("AAA: %@ (%f %f; %f %f)", parent!, parent!.bounds.origin.x, parent!.bounds.origin.y, parent!.bounds.size.width, parent!.bounds.size.height)
+            let parent2 = parent?.superview
+            if (parent2 != nil) {
+                    parent = parent2
+                }
+            else {
+                    parent = nil
+                }
+        } while (parent != nil);
+
+#if true
+        var newBounds = frame
+        newBounds.origin.x = 0
+        newBounds.origin.y = 0
+        self.superview?.superview?.superview?.bounds = newBounds
+        self.superview?.superview?.bounds = newBounds
+        self.superview?.bounds = newBounds
+        self.bounds = newBounds
+#else
+        let fullScreen = UIScreen.mainScreen().bounds
+        NSLog("FULLSCREEN: (%f %f; %f %f)", fullScreen.origin.x, fullScreen.origin.y, fullScreen.size.width, fullScreen.size.height)
+        self.superview?.superview?.superview?.frame = fullScreen
+        self.superview?.superview?.frame = fullScreen
+        self.superview?.frame = fullScreen
+        self.frame = fullScreen
+        self.superview?.superview?.superview?.bounds = fullScreen
+        self.superview?.superview?.bounds = fullScreen
+        self.superview?.bounds = fullScreen
+        self.bounds = fullScreen
+#endif
+
+        parent = self
+        do {
+            NSLog("%BBB: %@ (%f %f; %f %f)", parent!, parent!.bounds.origin.x, parent!.bounds.origin.y, parent!.bounds.size.width, parent!.bounds.size.height)
+            let parent2 = parent?.superview
+            if (parent2 != nil) {
+                parent = parent2
+            }
+            else {
+                parent = nil
+            }
+        } while (parent != nil);
+#endif
+
+        userInteractionEnabled = true
+        
 //        self.layer.borderColor = UIColor.greenColor().CGColor
 //        self.layer.borderWidth = 1
         cellSize = CGFloat(min(self.frame.size.height, self.frame.size.width)) / CGFloat(kNumRowsCols)
@@ -29,6 +79,7 @@ class SCBoardView : UIView {
         //create horizontal boundaries
         createHorizontalPlays()
         //create vertical boundaries
+        createVerticalPlays()
     }
 
     func createCells() {
@@ -57,7 +108,51 @@ class SCBoardView : UIView {
                  play.center = center
                 self.addSubview(play)
             }
+
             horizontalPlays.append(rowArray)
         }
     }
+
+    func createVerticalPlays() {
+        for row in 0..<(numRows-1) {
+            var rowArray = Array<SCPlayView>()
+            for col in 0..<numCols {
+                let frame = CGRectMake(0, 0, cellSize * 2, cellSize)
+                var play = SCPlayView(frame: frame, aRow: row, aCol: col, aOrientation: SCPlayView.PlayOrientation.Vertical)
+                rowArray.append(play)
+                let center = CGPoint(x: (CGFloat(col) + 0.5) * cellSize, y: (CGFloat(row) + 1.0) * cellSize)
+                play.center = center
+                self.addSubview(play)
+            }
+
+            verticalPlays.append(rowArray)
+        }
+    }
+
+/*
+    playerTapped -
+        if haveCurrentPlay
+            currentPlay.SetState(Clear)
+        set currentPlay = thisPlay
+        currentPlay.SetState(Tentative)
+    playerCommitted - 
+        currentPlay.SetState(Committed)
+        currentPlay = nil
+        swap players
+*/
+    //used by current (local) player so board will be marked
+    func playerTapped(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int, undo: Bool) {
+        if orientation == SCPlayView.PlayOrientation.Vertical {
+            let play = verticalPlays[row][col]
+        }
+    }
+
+    //used by local and remote players to complete move
+    //a local player will have already called playerPlayed()
+    //a remote player will have called playerPlayed() but this is not transmitted to the other player, so the playerCommitted() must
+    //also invoke playerPlayed ... there should be no "cost" to calling playerPlayed() twice
+    func playerCommitted(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int) {
+        
+    }
+    
 }
