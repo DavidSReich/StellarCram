@@ -20,7 +20,7 @@ class SCPlayView : UIImageView {
     var previousPointInsidePoint: CGPoint?
     var previousPointInsideResponse: Bool?
     var tapRecognizer: UITapGestureRecognizer?
-    var playState: PlayState
+    var playState: PlayState = PlayState.Clear
     var playedFrame: CGRect?
     var clearFrame: CGRect?
 
@@ -33,6 +33,7 @@ class SCPlayView : UIImageView {
         case Clear  //unmarked
         case Tentative  //mark lightly
         case Committed  //permanent marker
+        case Blocked    //unmarked and one of the cells is covered already
     }
 
     required init(coder: NSCoder) {
@@ -45,7 +46,6 @@ class SCPlayView : UIImageView {
         col = aCol
         orientation = aOrientation
         hotSpotPath = CGPathCreateMutable();
-        playState = PlayState.Clear
         clearFrame = frame
 
         super.init(frame: frame)
@@ -140,24 +140,12 @@ class SCPlayView : UIImageView {
     }
 
     func playTapped(recognizer: UITapGestureRecognizer) {
-        boardView?.playerTapped(self, playerNum: 0, undo: false)
-//        commitPlayView()
-//        updatePlayView()
+        boardView?.playerTapped(self)
         NSLog("Tapped in PlayView")
     }
     
-//    func commitPlayView()
-//    {
-//        //turn off touchability
-//        tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
-//        tapRecognizer?.numberOfTapsRequired = 1;
-//        tapRecognizer?.enabled = false
-//        
-//        playState = PlayState.Committed
-//    }
-
     func updatePlayView() {
-        if (playState == PlayState.Clear) {
+        if (playState == PlayState.Clear) || (playState == PlayState.Blocked) {
             layer.backgroundColor = UIColor.clearColor().CGColor
             layer.borderColor = UIColor.clearColor().CGColor
             layer.frame = clearFrame!
@@ -171,12 +159,19 @@ class SCPlayView : UIImageView {
             layer.borderWidth = 1
             layer.frame = CGRectMake(layer.frame.origin.x + insetSize, layer.frame.origin.y + insetSize, layer.frame.size.width - insetSize * 2, layer.frame.size.height - insetSize * 2)
         } else {    //PlayState.Committed
+            //we only transition here from Tentative --
+            //which means a Committed message via GameCenter must change state to Tentative before becoming Committed
+            //and a move via "AI" must also do this
             layer.backgroundColor = UIColor.blackColor().CGColor
         }
     }
 
     func setState(newState: PlayState) {
         if playState == newState {
+            return
+        }
+
+        if newState == PlayState.Blocked && playState == PlayState.Committed {
             return
         }
 
@@ -191,11 +186,7 @@ class SCPlayView : UIImageView {
             tapRecognizer?.addTarget(self, action: Selector("playTapped:"))
             tapRecognizer?.enabled = true
             userInteractionEnabled = true
-//        } else if playState == PlayState.Tentative {
-//            tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
-//            tapRecognizer?.enabled = false
-//            userInteractionEnabled = false
-        } else {    //PlayState.Committed
+        } else {    //PlayState.Committed, Tentative, Blocked
             tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
             tapRecognizer?.enabled = false
             userInteractionEnabled = false

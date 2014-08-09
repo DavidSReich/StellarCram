@@ -22,10 +22,10 @@ class SCCellView : UIView {
         col = aCol
         super.init(frame: frame)
         if (row + col) % 2 == 0 {
-            self.backgroundColor = UIColor(red: 166.0/255.0, green: 97.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            backgroundColor = UIColor(red: 166.0/255.0, green: 97.0/255.0, blue: 26.0/255.0, alpha: 1.0)
         }
         else {
-            self.backgroundColor = UIColor(red: 223.0/255.0, green: 194.0/255.0, blue: 125.0/255.0, alpha: 1.0)
+            backgroundColor = UIColor(red: 223.0/255.0, green: 194.0/255.0, blue: 125.0/255.0, alpha: 1.0)
         }
     }
 }

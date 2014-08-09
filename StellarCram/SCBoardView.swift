@@ -39,21 +39,21 @@ class SCBoardView : UIView {
         var newBounds = frame
         newBounds.origin.x = 0
         newBounds.origin.y = 0
-        self.superview?.superview?.superview?.bounds = newBounds
-        self.superview?.superview?.bounds = newBounds
-        self.superview?.bounds = newBounds
-        self.bounds = newBounds
+        superview?.superview?.superview?.bounds = newBounds
+        superview?.superview?.bounds = newBounds
+        superview?.bounds = newBounds
+        bounds = newBounds
 #else
         let fullScreen = UIScreen.mainScreen().bounds
         NSLog("FULLSCREEN: (%f %f; %f %f)", fullScreen.origin.x, fullScreen.origin.y, fullScreen.size.width, fullScreen.size.height)
-        self.superview?.superview?.superview?.frame = fullScreen
-        self.superview?.superview?.frame = fullScreen
-        self.superview?.frame = fullScreen
-        self.frame = fullScreen
-        self.superview?.superview?.superview?.bounds = fullScreen
-        self.superview?.superview?.bounds = fullScreen
-        self.superview?.bounds = fullScreen
-        self.bounds = fullScreen
+        superview?.superview?.superview?.frame = fullScreen
+        superview?.superview?.frame = fullScreen
+        superview?.frame = fullScreen
+        frame = fullScreen
+        superview?.superview?.superview?.bounds = fullScreen
+        superview?.superview?.bounds = fullScreen
+        superview?.bounds = fullScreen
+        bounds = fullScreen
 #endif
 
         parent = self
@@ -71,10 +71,10 @@ class SCBoardView : UIView {
 
         userInteractionEnabled = true
         
-//        self.layer.borderColor = UIColor.greenColor().CGColor
-//        self.layer.borderWidth = 1
+//        layer.borderColor = UIColor.greenColor().CGColor
+//        layer.borderWidth = 1
 
-        cellSize = CGFloat(min(self.frame.size.height, self.frame.size.width)) / CGFloat(kNumRowsCols)
+        cellSize = CGFloat(min(frame.size.height, frame.size.width)) / CGFloat(kNumRowsCols)
 
         //create cells - 8x8
         createCells()
@@ -93,7 +93,7 @@ class SCBoardView : UIView {
                 rowArray.append(cell)
                 let center = CGPoint(x: (CGFloat(col) + 0.5) * cellSize, y: (CGFloat(row) + 0.5) * cellSize)
                 cell.center = center
-                self.addSubview(cell)
+                addSubview(cell)
             }
             cells.append(rowArray)
         }
@@ -108,7 +108,7 @@ class SCBoardView : UIView {
                 rowArray.append(play)
                 let center = CGPoint(x: CGFloat(col + 1) * cellSize, y: (CGFloat(row) + 0.5) * cellSize)
                  play.center = center
-                self.addSubview(play)
+                addSubview(play)
             }
 
             horizontalPlays.append(rowArray)
@@ -124,7 +124,7 @@ class SCBoardView : UIView {
                 rowArray.append(play)
                 let center = CGPoint(x: (CGFloat(col) + 0.5) * cellSize, y: (CGFloat(row) + 1.0) * cellSize)
                 play.center = center
-                self.addSubview(play)
+                addSubview(play)
             }
 
             verticalPlays.append(rowArray)
@@ -145,7 +145,7 @@ class SCBoardView : UIView {
         swap players
 */
     //used by current (local) player so board will be marked
-    func playerTapped(newPlay: SCPlayView, playerNum: Int, undo: Bool) {
+    func playerTapped(newPlay: SCPlayView) {
         if currentPlay? != nil {
             currentPlay?.setState(SCPlayView.PlayState.Clear)
             currentPlay = nil
@@ -162,24 +162,56 @@ class SCBoardView : UIView {
     //a local player will have already called playerPlayed()
     //a remote player will have called playerPlayed() but this is not transmitted to the other player, so the playerCommitted() must
     //also invoke playerPlayed ... there should be no "cost" to calling playerPlayed() twice
-//    func playerCommitted(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int) {
     func playerCommitted() {
         if currentPlay? == nil {
             return
         }
 
         currentPlay?.setState(SCPlayView.PlayState.Committed)
-
-        //keep these to mark the cells, and disable the adjacent boundaries
-        let row = currentPlay?.row
-        let col = currentPlay?.col
-        let orientation = currentPlay?.orientation
+        blockAdjacentPlayViews(currentPlay!)
         
         currentPlay = nil
 
-        //mark cells
 //        check for check, checkmate??
 //            swap players
     }
+
+    func blockAdjacentPlayViews(thePlay: SCPlayView) {
+        let row = thePlay.row
+        let col = thePlay.col
+        if currentPlay?.orientation == SCPlayView.PlayOrientation.Horizontal {
+            blockAdjacentPlayViewsFromCell(row, col: col)
+            blockAdjacentPlayViewsFromCell(row, col: col + 1)
+        } else {    //Vertical
+            blockAdjacentPlayViewsFromCell(row, col: col)
+            blockAdjacentPlayViewsFromCell(row + 1, col: col)
+        }
+    }
     
+    func blockAdjacentPlayViewsFromCell(row: Int, col: Int) {
+        //to left
+        if col > 0 {
+            horizontalPlays[row][col - 1].setState(SCPlayView.PlayState.Blocked)
+        }
+        //to right
+        if col < kNumRowsCols - 1 {
+            horizontalPlays[row][col].setState(SCPlayView.PlayState.Blocked)
+        }
+        //above
+        if row > 0 {
+            verticalPlays[row - 1][col].setState(SCPlayView.PlayState.Blocked)
+        }
+        //below
+        if row < kNumRowsCols - 1 {
+            verticalPlays[row][col].setState(SCPlayView.PlayState.Blocked)
+        }
+    }
+
+    func isGameOver() -> Bool {
+        //count possible moves left
+        //if no moves left the player who just played loses
+        //if there is only one move left then the current player loses
+        //there are possible situations with more than one move left where making ANY move results in a loss -- ie the current player has already lost -- can we detect them?  Maybe involves also counting cells?
+        return false
+    }
 }
