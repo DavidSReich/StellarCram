@@ -19,6 +19,7 @@ class SCBoardView : UIView {
     var horizontalPlays = Array<Array<SCPlayView>>()
     var verticalPlays = Array<Array<SCPlayView>>()
     var cellSize:CGFloat = 0
+    var currentPlay: SCPlayView?
 
     func setupBoard() {
 #if false
@@ -72,6 +73,7 @@ class SCBoardView : UIView {
         
 //        self.layer.borderColor = UIColor.greenColor().CGColor
 //        self.layer.borderWidth = 1
+
         cellSize = CGFloat(min(self.frame.size.height, self.frame.size.width)) / CGFloat(kNumRowsCols)
 
         //create cells - 8x8
@@ -102,7 +104,7 @@ class SCBoardView : UIView {
             var rowArray = Array<SCPlayView>()
             for col in 0..<(numCols-1) {
                 let frame = CGRectMake(0, 0, cellSize * 2, cellSize)
-                var play = SCPlayView(frame: frame, aRow: row, aCol: col, aOrientation: SCPlayView.PlayOrientation.Horizontal)
+                var play = SCPlayView(theBoard: self, frame: frame, aRow: row, aCol: col, aOrientation: SCPlayView.PlayOrientation.Horizontal)
                 rowArray.append(play)
                 let center = CGPoint(x: CGFloat(col + 1) * cellSize, y: (CGFloat(row) + 0.5) * cellSize)
                  play.center = center
@@ -118,7 +120,7 @@ class SCBoardView : UIView {
             var rowArray = Array<SCPlayView>()
             for col in 0..<numCols {
                 let frame = CGRectMake(0, 0, cellSize * 2, cellSize)
-                var play = SCPlayView(frame: frame, aRow: row, aCol: col, aOrientation: SCPlayView.PlayOrientation.Vertical)
+                var play = SCPlayView(theBoard: self, frame: frame, aRow: row, aCol: col, aOrientation: SCPlayView.PlayOrientation.Vertical)
                 rowArray.append(play)
                 let center = CGPoint(x: (CGFloat(col) + 0.5) * cellSize, y: (CGFloat(row) + 1.0) * cellSize)
                 play.center = center
@@ -132,18 +134,27 @@ class SCBoardView : UIView {
 /*
     playerTapped -
         if haveCurrentPlay
-            currentPlay.SetState(Clear)
+            currentPlay.setState(Clear)
         set currentPlay = thisPlay
-        currentPlay.SetState(Tentative)
+        currentPlay.setState(Tentative)
     playerCommitted - 
-        currentPlay.SetState(Committed)
+        currentPlay.setState(Committed)
         currentPlay = nil
+        mark cells
+        check for check, checkmate??
         swap players
 */
     //used by current (local) player so board will be marked
-    func playerTapped(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int, undo: Bool) {
-        if orientation == SCPlayView.PlayOrientation.Vertical {
-            let play = verticalPlays[row][col]
+    func playerTapped(newPlay: SCPlayView, playerNum: Int, undo: Bool) {
+        if currentPlay? != nil {
+            currentPlay?.setState(SCPlayView.PlayState.Clear)
+            currentPlay = nil
+        }
+        
+        currentPlay = newPlay
+
+        if currentPlay? != nil {
+            currentPlay?.setState(SCPlayView.PlayState.Tentative)
         }
     }
 
@@ -151,8 +162,24 @@ class SCBoardView : UIView {
     //a local player will have already called playerPlayed()
     //a remote player will have called playerPlayed() but this is not transmitted to the other player, so the playerCommitted() must
     //also invoke playerPlayed ... there should be no "cost" to calling playerPlayed() twice
-    func playerCommitted(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int) {
+//    func playerCommitted(row: Int, col: Int, orientation: SCPlayView.PlayOrientation, playerNum: Int) {
+    func playerCommitted() {
+        if currentPlay? == nil {
+            return
+        }
+
+        currentPlay?.setState(SCPlayView.PlayState.Committed)
+
+        //keep these to mark the cells, and disable the adjacent boundaries
+        let row = currentPlay?.row
+        let col = currentPlay?.col
+        let orientation = currentPlay?.orientation
         
+        currentPlay = nil
+
+        //mark cells
+//        check for check, checkmate??
+//            swap players
     }
     
 }

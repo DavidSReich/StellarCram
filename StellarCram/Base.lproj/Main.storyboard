@@ -106,7 +106,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="boardView" destination="jCZ-jR-iCc" id="WrT-iP-Kgg"/>
+                        <outlet property="confirmMoveButton" destination="yYm-gT-vAQ" id="Erf-6c-Svj"/>
                         <outlet property="outerView" destination="Vit-Ag-kdj" id="x62-Iy-VbW"/>
+                        <outlet property="tabBar" destination="sop-Q8-zhT" id="fLV-If-D9k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7n-7J-6ko" sceneMemberID="firstResponder"/>

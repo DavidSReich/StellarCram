@@ -8,14 +8,16 @@
 
 import UIKit
 
-class SCMainViewController: UIViewController {
+class SCMainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var boardView: SCBoardView!
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var confirmMoveButton: UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nibself.
-//        boardView.setupBoard()
+        tabBar.delegate = self
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -29,5 +31,11 @@ class SCMainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!) {
+        if item == confirmMoveButton {
+            boardView.playerCommitted()
+        }
+    }
+    
 }
 

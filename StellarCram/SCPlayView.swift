@@ -12,6 +12,7 @@ import UIKit
 let kPiOver2: CGFloat = CGFloat(M_PI_2)
 
 class SCPlayView : UIImageView {
+    var boardView: SCBoardView?
     var row: Int
     var col: Int
     var orientation: PlayOrientation
@@ -20,6 +21,8 @@ class SCPlayView : UIImageView {
     var previousPointInsideResponse: Bool?
     var tapRecognizer: UITapGestureRecognizer?
     var playState: PlayState
+    var playedFrame: CGRect?
+    var clearFrame: CGRect?
 
     enum PlayOrientation {
         case Horizontal   //piece is played in two adjacent cells in row
@@ -36,12 +39,14 @@ class SCPlayView : UIImageView {
         fatalError("NSCoding not supported for SCPlayView")
     }
     
-    init(frame:CGRect, aRow:Int, aCol:Int, aOrientation:PlayOrientation) {
+    init(theBoard: SCBoardView, frame:CGRect, aRow:Int, aCol:Int, aOrientation:PlayOrientation) {
+        boardView = theBoard
         row = aRow
         col = aCol
         orientation = aOrientation
         hotSpotPath = CGPathCreateMutable();
         playState = PlayState.Clear
+        clearFrame = frame
 
         super.init(frame: frame)
         
@@ -135,35 +140,67 @@ class SCPlayView : UIImageView {
     }
 
     func playTapped(recognizer: UITapGestureRecognizer) {
-
-        commitPlayView()
-        updatePlayView()
+        boardView?.playerTapped(self, playerNum: 0, undo: false)
+//        commitPlayView()
+//        updatePlayView()
         NSLog("Tapped in PlayView")
     }
     
-    func commitPlayView()
-    {
-        //turn off touchability
-        tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
-        tapRecognizer?.numberOfTapsRequired = 1;
-        tapRecognizer?.enabled = false
-        
-        playState = PlayState.Committed
-    }
+//    func commitPlayView()
+//    {
+//        //turn off touchability
+//        tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
+//        tapRecognizer?.numberOfTapsRequired = 1;
+//        tapRecognizer?.enabled = false
+//        
+//        playState = PlayState.Committed
+//    }
 
     func updatePlayView() {
         if (playState == PlayState.Clear) {
             layer.backgroundColor = UIColor.clearColor().CGColor
             layer.borderColor = UIColor.clearColor().CGColor
+            layer.frame = clearFrame!
         }
-        else /*if (playState == PlayState.Clear)*/ {
+        else if playState == PlayState.Tentative {
             var insetSize = (orientation == PlayOrientation.Vertical) ? layer.frame.size.height : layer.frame.size.width
             insetSize *= 0.09
             layer.cornerRadius = insetSize * 1.3
-            layer.backgroundColor = (playState == PlayState.Committed) ? UIColor.blackColor().CGColor : UIColor.darkGrayColor().CGColor
+            layer.backgroundColor = UIColor.darkGrayColor().CGColor
             layer.borderColor = UIColor.lightGrayColor().CGColor
             layer.borderWidth = 1
             layer.frame = CGRectMake(layer.frame.origin.x + insetSize, layer.frame.origin.y + insetSize, layer.frame.size.width - insetSize * 2, layer.frame.size.height - insetSize * 2)
+        } else {    //PlayState.Committed
+            layer.backgroundColor = UIColor.blackColor().CGColor
         }
+    }
+
+    func setState(newState: PlayState) {
+        if playState == newState {
+            return
+        }
+
+        //if currently clear
+        if playState == PlayState.Clear {
+            clearFrame = layer.frame
+        }
+
+        playState = newState
+
+        if playState == PlayState.Clear {
+            tapRecognizer?.addTarget(self, action: Selector("playTapped:"))
+            tapRecognizer?.enabled = true
+            userInteractionEnabled = true
+//        } else if playState == PlayState.Tentative {
+//            tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
+//            tapRecognizer?.enabled = false
+//            userInteractionEnabled = false
+        } else {    //PlayState.Committed
+            tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
+            tapRecognizer?.enabled = false
+            userInteractionEnabled = false
+        }
+
+        updatePlayView()
     }
 }
