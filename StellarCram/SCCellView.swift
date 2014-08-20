@@ -12,6 +12,7 @@ import UIKit
 class SCCellView : UIView {
     var row: Int
     var col: Int
+    var covered: Bool = false
 
     required init(coder: NSCoder) {
         fatalError("NSCoding not supported for SCCellView")

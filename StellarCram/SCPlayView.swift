@@ -20,6 +20,7 @@ class SCPlayView : UIImageView {
     var previousPointInsidePoint: CGPoint?
     var previousPointInsideResponse: Bool?
     var tapRecognizer: UITapGestureRecognizer?
+    var doubleTapRecognizer: UITapGestureRecognizer?
     var playState: PlayState = PlayState.Clear
     var playedFrame: CGRect?
     var clearFrame: CGRect?
@@ -107,7 +108,13 @@ class SCPlayView : UIImageView {
         }
 
         tapRecognizer = UITapGestureRecognizer(target: self, action:Selector("playTapped:"))
+        tapRecognizer?.enabled = true
         addGestureRecognizer(tapRecognizer!);
+        doubleTapRecognizer = UITapGestureRecognizer(target: self, action:Selector("playDoubleTapped:"))
+        doubleTapRecognizer?.numberOfTapsRequired = 2
+        doubleTapRecognizer?.enabled = true
+        addGestureRecognizer(doubleTapRecognizer!);
+
         userInteractionEnabled = true
     }
 
@@ -142,6 +149,11 @@ class SCPlayView : UIImageView {
     func playTapped(recognizer: UITapGestureRecognizer) {
         boardView?.playerTapped(self)
         NSLog("Tapped in PlayView")
+    }
+    
+    func playDoubleTapped(recognizer: UITapGestureRecognizer) {
+        boardView?.playerCommitted()
+        NSLog("Doubletapped in PlayView")
     }
     
     func updatePlayView() {
@@ -185,10 +197,20 @@ class SCPlayView : UIImageView {
         if playState == PlayState.Clear {
             tapRecognizer?.addTarget(self, action: Selector("playTapped:"))
             tapRecognizer?.enabled = true
+            doubleTapRecognizer?.removeTarget(self, action: Selector("playDoubleTapped:"))
+            doubleTapRecognizer?.enabled = false
             userInteractionEnabled = true
-        } else {    //PlayState.Committed, Tentative, Blocked
+        } else if playState == PlayState.Tentative {
             tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
             tapRecognizer?.enabled = false
+            doubleTapRecognizer?.addTarget(self, action: Selector("playDoubleTapped:"))
+            doubleTapRecognizer?.enabled = true
+            userInteractionEnabled = true
+        } else {    //PlayState.Committed, Blocked
+            tapRecognizer?.removeTarget(self, action: Selector("playTapped:"))
+            tapRecognizer?.enabled = false
+            doubleTapRecognizer?.removeTarget(self, action: Selector("playDoubleTapped:"))
+            doubleTapRecognizer?.enabled = false
             userInteractionEnabled = false
         }
 

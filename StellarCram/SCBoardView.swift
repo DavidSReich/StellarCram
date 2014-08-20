@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 let kNumRowsCols = 8;
+//let kNumRowsCols = 4;
 
 class SCBoardView : UIView {
 
@@ -20,8 +21,19 @@ class SCBoardView : UIView {
     var verticalPlays = Array<Array<SCPlayView>>()
     var cellSize:CGFloat = 0
     var currentPlay: SCPlayView?
+    var mainViewController: SCMainViewController?
+    var currentPlayer = 0
+    var players = Array<SCPlayer>()
+    var gameType = LocationType.Local
 
-    func setupBoard() {
+    enum LocationType {
+        case Local  //game is on this system - two local players
+        case Remote //game is through GC - each player is local, each opponent is remote
+        case AI     //game is on this system - one player is local, other player is AI
+    }
+    
+    func setupBoard(viewController: SCMainViewController) {
+        mainViewController = viewController
 #if false
         var parent: UIView? = self
         do {
@@ -82,6 +94,16 @@ class SCBoardView : UIView {
         createHorizontalPlays()
         //create vertical boundaries
         createVerticalPlays()
+
+        currentPlayer = 1
+        nextTurn()
+#if true
+    NSLog("%d", players.count)
+    for player in players {
+        NSLog("\(player.playerName) -- \(player.playerType.hashValue)")
+//        NSLog("%s %d", player.playerName, player.playerType.hashValue)
+    }
+#endif
     }
 
     func createCells() {
@@ -131,6 +153,36 @@ class SCBoardView : UIView {
         }
     }
 
+    func setupPlayers(type: SCBoardView.LocationType) {
+        while players.count < 2 {
+            players.append(SCPlayer())
+        }
+
+        gameType = type
+        if gameType == SCBoardView.LocationType.Local {
+            players[0].playerName = "Player 1"
+            players[0].playerOwnsName = "Player 1's"
+            players[0].playerType = SCBoardView.LocationType.Local
+            players[1].playerName = "Player 2"
+            players[1].playerOwnsName = "Player 2's"
+            players[1].playerType = SCBoardView.LocationType.Local
+        } else if gameType == SCBoardView.LocationType.AI {
+            players[0].playerName = "You"
+            players[0].playerOwnsName = "Your"
+            players[0].playerType = SCBoardView.LocationType.Local
+            players[1].playerName = "AI"
+            players[1].playerOwnsName = "AI's"
+            players[1].playerType = SCBoardView.LocationType.AI
+        } else { //if gameType == SCBoardView.LocationType.Remote {
+            players[0].playerName = "You"
+            players[0].playerOwnsName = "Your"
+            players[0].playerType = SCBoardView.LocationType.Local
+            players[1].playerName = "Other Player"
+            players[1].playerOwnsName = "Other Player's"
+            players[1].playerType = SCBoardView.LocationType.Remote
+        }
+    }
+
 /*
     playerTapped -
         if haveCurrentPlay
@@ -156,6 +208,12 @@ class SCBoardView : UIView {
         if currentPlay? != nil {
             currentPlay?.setState(SCPlayView.PlayState.Tentative)
         }
+
+        if players[currentPlayer].playerType == LocationType.AI {
+            let delay = 2.0 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) { self.playerCommitted() }
+        }
     }
 
     //used by local and remote players to complete move
@@ -172,8 +230,16 @@ class SCBoardView : UIView {
         
         currentPlay = nil
 
-//        check for check, checkmate??
-//            swap players
+        if isGameOver() == true {
+            currentPlayer = currentPlayer == 1 ? 0 : 1
+            if gameType != LocationType.Local && players[currentPlayer].playerType == LocationType.Local {
+                mainViewController?.setPromptText("\(players[currentPlayer].playerName) have won!")
+            } else {
+                mainViewController?.setPromptText("\(players[currentPlayer].playerName) has won!")
+            }
+        } else {
+            nextTurn()
+        }
     }
 
     func blockAdjacentPlayViews(thePlay: SCPlayView) {
@@ -189,6 +255,8 @@ class SCBoardView : UIView {
     }
     
     func blockAdjacentPlayViewsFromCell(row: Int, col: Int) {
+        cells[row][col].covered = true  //used mainly by "AI"
+
         //to left
         if col > 0 {
             horizontalPlays[row][col - 1].setState(SCPlayView.PlayState.Blocked)
@@ -208,10 +276,111 @@ class SCBoardView : UIView {
     }
 
     func isGameOver() -> Bool {
-        //count possible moves left
+        //are there moves left?
         //if no moves left the player who just played loses
-        //if there is only one move left then the current player loses
-        //there are possible situations with more than one move left where making ANY move results in a loss -- ie the current player has already lost -- can we detect them?  Maybe involves also counting cells?
-        return false
+        for row in 0..<numRows {
+            for col in 0..<(numCols-1) {
+                if horizontalPlays[row][col].playState == SCPlayView.PlayState.Clear {
+                    return false
+                }
+            }
+        }
+        
+        for row in 0..<(numRows-1) {
+            for col in 0..<numCols {
+                if verticalPlays[row][col].playState == SCPlayView.PlayState.Clear {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    func rematch() {
+        //clear all plays
+        for row in 0..<numRows {
+            for col in 0..<(numCols-1) {
+                horizontalPlays[row][col].setState(SCPlayView.PlayState.Clear)
+            }
+        }
+        
+        for row in 0..<(numRows-1) {
+            for col in 0..<numCols {
+                verticalPlays[row][col].setState(SCPlayView.PlayState.Clear)
+            }
+        }
+
+        //uncover cells
+        for row in 0..<numRows {
+            for col in 0..<numCols {
+                cells[row][col].covered = false
+            }
+        }
+
+        currentPlayer = Int(arc4random_uniform(2))
+        nextTurn()
+    }
+
+    func nextTurn() {
+        if gameType == LocationType.Local {
+            //swap players
+            currentPlayer = currentPlayer == 1 ? 0 : 1
+            mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
+        } else if gameType == LocationType.AI {
+            //swap players
+            currentPlayer = currentPlayer == 1 ? 0 : 1
+            if players[currentPlayer].playerType == LocationType.Local {
+                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
+                userInteractionEnabled = true
+            } else {    //the AI
+                mainViewController?.setPromptText("AI - it's your turn!")
+                userInteractionEnabled = false
+                let aiPlayView = nextAIPlay()
+
+                let delay = 2.0 * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { self.playerTapped(aiPlayView) }
+            }
+        } else {    //Remote
+        }
+    }
+
+    func nextAIPlay() -> SCPlayView {
+        //don't check isGameOver() it should have already been called
+        //first - are there any covered cells?
+        var anyCovered: Bool = false
+        for row in 0..<numRows {
+            for col in 0..<numCols {
+                if cells[row][col].covered == true {
+                    anyCovered = true
+                }
+            }
+        }
+
+        var aiPlayView: SCPlayView?
+
+        do {
+            if (arc4random_uniform(8) % 2 == 0) {
+                //find a Clear horizontal play
+                let row = Int(arc4random_uniform(UInt32(horizontalPlays.count)))
+                let col = Int(arc4random_uniform(UInt32(horizontalPlays[0].count)))
+                aiPlayView = horizontalPlays[row][col]
+                if aiPlayView?.playState != SCPlayView.PlayState.Clear {
+                    aiPlayView = nil
+                }
+            } else {
+                //find a Clear vertical play
+                let row = Int(arc4random_uniform(UInt32(verticalPlays.count)))
+                let col = Int(arc4random_uniform(UInt32(verticalPlays[0].count)))
+                aiPlayView = verticalPlays[row][col]
+                if aiPlayView?.playState != SCPlayView.PlayState.Clear {
+                    aiPlayView = nil
+                }
+            }
+
+        } while aiPlayView == nil;
+
+        return aiPlayView!
     }
 }
