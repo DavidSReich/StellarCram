@@ -32,6 +32,8 @@
 		6378AE921997215800B5E2E7 /* SCPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6378AE911997215800B5E2E7 /* SCPlayer.swift */; };
 		63BAFB29198E7EF900A3F007 /* SCCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BAFB28198E7EF900A3F007 /* SCCellView.swift */; };
 		63CD9E9A19907F30003482DA /* SCPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD9E9919907F30003482DA /* SCPlayView.swift */; };
+		63E3125D19A47D2500A741E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E3125C19A47D2500A741E1 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		63E3125F19A4808B00A741E1 /* SCGameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3125E19A4808B00A741E1 /* SCGameCenterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		6378AE911997215800B5E2E7 /* SCPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPlayer.swift; sourceTree = "<group>"; };
 		63BAFB28198E7EF900A3F007 /* SCCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCellView.swift; sourceTree = "<group>"; };
 		63CD9E9919907F30003482DA /* SCPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPlayView.swift; sourceTree = "<group>"; };
+		63E3125C19A47D2500A741E1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		63E3125E19A4808B00A741E1 /* SCGameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCGameCenterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E3125D19A47D2500A741E1 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +102,7 @@
 		634E04FC198C8327009625C6 = {
 			isa = PBXGroup;
 			children = (
+				63E3125C19A47D2500A741E1 /* GameKit.framework */,
 				634E0507198C8327009625C6 /* StellarCram */,
 				634E051A198C8327009625C6 /* StellarCramTests */,
 				634E0506198C8327009625C6 /* Products */,
@@ -125,6 +131,7 @@
 				63BAFB28198E7EF900A3F007 /* SCCellView.swift */,
 				63CD9E9919907F30003482DA /* SCPlayView.swift */,
 				6378AE911997215800B5E2E7 /* SCPlayer.swift */,
+				63E3125E19A4808B00A741E1 /* SCGameCenterManager.swift */,
 			);
 			path = StellarCram;
 			sourceTree = "<group>";
@@ -227,6 +234,11 @@
 					634E0504198C8327009625C6 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = A2SGEM86LX;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					634E0516198C8327009625C6 = {
 						CreatedOnToolsVersion = 6.0;
@@ -294,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63BAFB29198E7EF900A3F007 /* SCCellView.swift in Sources */,
+				63E3125F19A4808B00A741E1 /* SCGameCenterManager.swift in Sources */,
 				634E050B198C8327009625C6 /* AppDelegate.swift in Sources */,
 				634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */,
 				634E0528198C8C45009625C6 /* SCMainViewController.swift in Sources */,
@@ -349,6 +362,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -366,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -392,6 +406,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -403,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -417,10 +432,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = StellarCram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -431,10 +448,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = StellarCram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

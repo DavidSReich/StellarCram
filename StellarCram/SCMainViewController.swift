@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GameKit
 
 class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDelegate {
     @IBOutlet weak var outerView: UIView!
@@ -17,11 +18,18 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
     @IBOutlet weak var infoButton: UITabBarItem!
     @IBOutlet weak var confirmMoveButton: UITabBarItem!
     @IBOutlet weak var playerPrompt: UILabel!
+    var gameCenterManager: SCGameCenterManager! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nibself.
         tabBar.delegate = self
+
+////        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
+////        gcViewController.gameCenterDelegate = self
+//        authenticateLocalPlayer()
+        gameCenterManager = SCGameCenterManager(theViewController: self)
+        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -74,9 +82,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
                     self.boardView.rematch()
                 }))
                 actionSheet.addAction(UIAlertAction(title: "Two Player OnLine", style: UIAlertActionStyle.Default, handler: { (action :UIAlertAction!)in
-                    self.boardView.gameType = SCBoardView.LocationType.Remote
-                    self.boardView.setupPlayers(SCBoardView.LocationType.Remote)
-                    self.boardView.rematch()
+                    self.gameCenterManager.matchMakerMatchMaker()
                 }))
                 actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(actionSheet, animated: true, completion: nil)
@@ -103,10 +109,9 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
             self.boardView.setupPlayers(SCBoardView.LocationType.AI)
             self.boardView.rematch()
         } else if buttonIndex == 2 {
-            self.boardView.gameType = SCBoardView.LocationType.Remote
-            self.boardView.setupPlayers(SCBoardView.LocationType.Remote)
-            self.boardView.rematch()
+            self.gameCenterManager.matchMakerMatchMaker()
         }
     }
+    
 }
 

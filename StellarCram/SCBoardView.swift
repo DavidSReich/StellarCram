@@ -25,6 +25,8 @@ class SCBoardView : UIView {
     var currentPlayer = 0
     var players = Array<SCPlayer>()
     var gameType = LocationType.Local
+    var clearH = 0
+    var clearV = 0
 
     enum LocationType {
         case Local  //game is on this system - two local players
@@ -210,21 +212,29 @@ class SCBoardView : UIView {
         }
 
         if players[currentPlayer].playerType == LocationType.AI {
-            let delay = 2.0 * Double(NSEC_PER_SEC)
+//            let delay = 2.0 * Double(NSEC_PER_SEC)
+            let delay = 1.0 * Double(NSEC_PER_SEC)
             let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) { self.playerCommitted() }
+        } else if (gameType == LocationType.Remote) && (players[currentPlayer].playerType == LocationType.Local) {
+            mainViewController?.gameCenterManager.sendTurnMessage(newPlay, isConfirmed: false)
         }
     }
 
     //used by local and remote players to complete move
-    //a local player will have already called playerPlayed()
-    //a remote player will have called playerPlayed() but this is not transmitted to the other player, so the playerCommitted() must
-    //also invoke playerPlayed ... there should be no "cost" to calling playerPlayed() twice
+    //a local player will have already called playerTapped()
+    //a remote player will have called playerTapped() but this is not transmitted to the other player, so the playerCommitted() must
+    //also invoke playerTapped ... there should be no "cost" to calling playerTapped() twice
     func playerCommitted() {
         if currentPlay? == nil {
             return
         }
 
+        if (gameType == LocationType.Remote) && (players[currentPlayer].playerType == LocationType.Local) {
+            mainViewController?.gameCenterManager.sendTurnMessage(currentPlay!, isConfirmed: true)
+        }
+    
+    
         currentPlay?.setState(SCPlayView.PlayState.Committed)
         blockAdjacentPlayViews(currentPlay!)
         
@@ -276,12 +286,16 @@ class SCBoardView : UIView {
     }
 
     func isGameOver() -> Bool {
+        clearH = 0
+        clearV = 0
         //are there moves left?
         //if no moves left the player who just played loses
+        var gameOver = true
         for row in 0..<numRows {
             for col in 0..<(numCols-1) {
                 if horizontalPlays[row][col].playState == SCPlayView.PlayState.Clear {
-                    return false
+                    clearH++
+                    gameOver = false
                 }
             }
         }
@@ -289,15 +303,16 @@ class SCBoardView : UIView {
         for row in 0..<(numRows-1) {
             for col in 0..<numCols {
                 if verticalPlays[row][col].playState == SCPlayView.PlayState.Clear {
-                    return false
+                    clearV++
+                    gameOver = false
                 }
             }
         }
         
-        return true
+        return gameOver
     }
     
-    func rematch() {
+    func resetGame() {
         //clear all plays
         for row in 0..<numRows {
             for col in 0..<(numCols-1) {
@@ -317,19 +332,32 @@ class SCBoardView : UIView {
                 cells[row][col].covered = false
             }
         }
-
-        currentPlayer = Int(arc4random_uniform(2))
-        nextTurn()
     }
 
+    func rematch() {
+        resetGame()
+        currentPlayer = Int(arc4random_uniform(2))
+        nextTurn()
+
+        if gameType == LocationType.Remote {
+            mainViewController?.gameCenterManager.sendStartMessage(currentPlayer)
+        }
+    }
+
+    //only called in remote player when receiving startMessage
+    func startMatch(firstPlayer: Int) {
+        resetGame()
+        currentPlayer = firstPlayer
+        nextTurn()
+    }
+    
     func nextTurn() {
+        //swap players
+        currentPlayer = currentPlayer == 1 ? 0 : 1
+
         if gameType == LocationType.Local {
-            //swap players
-            currentPlayer = currentPlayer == 1 ? 0 : 1
             mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
         } else if gameType == LocationType.AI {
-            //swap players
-            currentPlayer = currentPlayer == 1 ? 0 : 1
             if players[currentPlayer].playerType == LocationType.Local {
                 mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
                 userInteractionEnabled = true
@@ -343,6 +371,13 @@ class SCBoardView : UIView {
                 dispatch_after(time, dispatch_get_main_queue()) { self.playerTapped(aiPlayView) }
             }
         } else {    //Remote
+            if players[currentPlayer].playerType == LocationType.Local {
+                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
+                userInteractionEnabled = true
+            } else {    //the other player
+                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
+                userInteractionEnabled = false
+            }
         }
     }
 
@@ -357,11 +392,13 @@ class SCBoardView : UIView {
                 }
             }
         }
+        //to make a better?? AI, if anyCovered try to play adjacent to one??? or avoid playing next to one?
 
         var aiPlayView: SCPlayView?
 
+        let clearHProportion = (100 * clearH) / (clearH + clearV)
         do {
-            if (arc4random_uniform(8) % 2 == 0) {
+            if (Int(arc4random_uniform(100)) < clearHProportion) {
                 //find a Clear horizontal play
                 let row = Int(arc4random_uniform(UInt32(horizontalPlays.count)))
                 let col = Int(arc4random_uniform(UInt32(horizontalPlays[0].count)))
@@ -382,5 +419,14 @@ class SCBoardView : UIView {
         } while aiPlayView == nil;
 
         return aiPlayView!
+    }
+
+    func getPlayView(row: Int, col: Int, isHorizontal: Bool) -> SCPlayView {
+        if isHorizontal {
+            return horizontalPlays[row][col]
+        }
+
+        //must be vertical
+        return verticalPlays[row][col]
     }
 }
