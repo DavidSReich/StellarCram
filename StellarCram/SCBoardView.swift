@@ -27,6 +27,8 @@ class SCBoardView : UIView {
     var gameType = LocationType.Local
     var clearH = 0
     var clearV = 0
+    var insideGame = false
+    var gameOver = false
 
     enum LocationType {
         case Local  //game is on this system - two local players
@@ -97,6 +99,9 @@ class SCBoardView : UIView {
         //create vertical boundaries
         createVerticalPlays()
 
+        insideGame = false
+        gameOver = false
+
         currentPlayer = 1
         nextTurn()
 #if true
@@ -155,7 +160,7 @@ class SCBoardView : UIView {
         }
     }
 
-    func setupPlayers(type: SCBoardView.LocationType) {
+    func setupPlayers(type: SCBoardView.LocationType, otherPlayerName: String?) {
         while players.count < 2 {
             players.append(SCPlayer())
         }
@@ -172,19 +177,43 @@ class SCBoardView : UIView {
             players[0].playerName = "You"
             players[0].playerOwnsName = "Your"
             players[0].playerType = SCBoardView.LocationType.Local
-            players[1].playerName = "AI"
-            players[1].playerOwnsName = "AI's"
+            players[1].playerName = "The AI"
+            players[1].playerOwnsName = "The AI's"
             players[1].playerType = SCBoardView.LocationType.AI
         } else { //if gameType == SCBoardView.LocationType.Remote {
             players[0].playerName = "You"
             players[0].playerOwnsName = "Your"
             players[0].playerType = SCBoardView.LocationType.Local
-            players[1].playerName = "Other Player"
-            players[1].playerOwnsName = "Other Player's"
+            players[1].playerName = otherPlayerName!
+            players[1].playerOwnsName = otherPlayerName! + "'s"
             players[1].playerType = SCBoardView.LocationType.Remote
         }
     }
 
+    func startLocalGame() {
+        if gameType == SCBoardView.LocationType.Remote {
+            mainViewController?.gameCenterManager.disconnectMatch()
+        }
+        gameType = SCBoardView.LocationType.Local
+        setupPlayers(SCBoardView.LocationType.Local, otherPlayerName: nil)
+        rematch()
+    }
+
+    func startAIGame() {
+        if gameType == SCBoardView.LocationType.Remote {
+            mainViewController?.gameCenterManager.disconnectMatch()
+        }
+        gameType = SCBoardView.LocationType.AI
+        setupPlayers(SCBoardView.LocationType.AI, otherPlayerName: nil)
+        rematch()
+    }
+    
+    func startRemoteGame(otherPlayerName: String) {
+        gameType = SCBoardView.LocationType.Remote
+        setupPlayers(SCBoardView.LocationType.Remote, otherPlayerName: otherPlayerName)
+        rematch()
+    }
+    
 /*
     playerTapped -
         if haveCurrentPlay
@@ -230,6 +259,8 @@ class SCBoardView : UIView {
             return
         }
 
+        insideGame = true
+
         if (gameType == LocationType.Remote) && (players[currentPlayer].playerType == LocationType.Local) {
             mainViewController?.gameCenterManager.sendTurnMessage(currentPlay!, isConfirmed: true)
         }
@@ -241,6 +272,7 @@ class SCBoardView : UIView {
         currentPlay = nil
 
         if isGameOver() == true {
+            gameOver = true
             currentPlayer = currentPlayer == 1 ? 0 : 1
             if gameType != LocationType.Local && players[currentPlayer].playerType == LocationType.Local {
                 mainViewController?.setPromptText("\(players[currentPlayer].playerName) have won!")
@@ -332,6 +364,9 @@ class SCBoardView : UIView {
                 cells[row][col].covered = false
             }
         }
+
+        insideGame = false
+        gameOver = false
     }
 
     func rematch() {
@@ -340,6 +375,12 @@ class SCBoardView : UIView {
         nextTurn()
 
         if gameType == LocationType.Remote {
+            //at start up this will be sent by BOTH games ... and it's a race condition
+            //if each starts with different currentPlayer and sends the messages at the same time
+            //the message triggers startMatch() in the other game
+            //then each will reset the other's currentPlayer ... test this ... 
+            //if it's a problem copy SCFirstPlayerNegotiator
+            //this isn't a problem for rematches since rematch starting is asymmetric (the way it's done here)
             mainViewController?.gameCenterManager.sendStartMessage(currentPlayer)
         }
     }
@@ -355,28 +396,20 @@ class SCBoardView : UIView {
         //swap players
         currentPlayer = currentPlayer == 1 ? 0 : 1
 
-        if gameType == LocationType.Local {
-            mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
-        } else if gameType == LocationType.AI {
-            if players[currentPlayer].playerType == LocationType.Local {
-                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
-                userInteractionEnabled = true
-            } else {    //the AI
-                mainViewController?.setPromptText("AI - it's your turn!")
-                userInteractionEnabled = false
-                let aiPlayView = nextAIPlay()
+        mainViewController?.setPromptText("It's \(players[currentPlayer].playerOwnsName) turn!")
 
-                let delay = 2.0 * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) { self.playerTapped(aiPlayView) }
-            }
-        } else {    //Remote
+        if gameType != LocationType.Local {
             if players[currentPlayer].playerType == LocationType.Local {
-                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
                 userInteractionEnabled = true
             } else {    //the other player
-                mainViewController?.setPromptText("\(players[currentPlayer].playerName) - it's your turn!")
                 userInteractionEnabled = false
+                if gameType == LocationType.AI {
+                    //the AI
+                    let aiPlayView = nextAIPlay()
+                    let delay = 2.0 * Double(NSEC_PER_SEC)
+                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                    dispatch_after(time, dispatch_get_main_queue()) { self.playerTapped(aiPlayView) }
+                }
             }
         }
     }
