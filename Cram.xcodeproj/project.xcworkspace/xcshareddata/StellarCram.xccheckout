@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D17C0C68-D69D-48A9-8C2B-6FCD23F997D6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>StellarCram</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DD23E4BA6ACFEE3EA94D24C68A8B521E32B9FAAC</key>
+		<string>/Users/david/Desktop/MyGames/StellarCram</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>StellarCram.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DD23E4BA6ACFEE3EA94D24C68A8B521E32B9FAAC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>/Users/david/Desktop/MyGames/StellarCram</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DD23E4BA6ACFEE3EA94D24C68A8B521E32B9FAAC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DD23E4BA6ACFEE3EA94D24C68A8B521E32B9FAAC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>StellarCram2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

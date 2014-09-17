@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StellarCram/SCGameCenterManager.swift"
+            timestampString = "432484871.070183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "matchMakerMatchMaker()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StellarCram/SCGameCenterManager.swift"
+            timestampString = "432484871.070183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "reconnectToMatch(_:playerName:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StellarCram.SCGameCenterManager.(reconnectToMatch (StellarCram.SCGameCenterManager) -&gt; (ObjectiveC.GKMatch, playerName : Swift.String) -&gt; ()).(closure #1) with unmangled suffix &quot;_promote0&quot;"
+                  moduleName = "StellarCram"
+                  urlString = "file:///Users/david/Desktop/MyGames/StellarCram2/StellarCram/SCGameCenterManager.swift"
+                  timestampString = "432481680.809774"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "301"
+                  endingLineNumber = "301"
+                  offsetFromSymbolStart = "258">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StellarCram.SCGameCenterManager.(reconnectToMatch (StellarCram.SCGameCenterManager) -&gt; (ObjectiveC.GKMatch, playerName : Swift.String) -&gt; ()).(closure #1) with unmangled suffix &quot;_promote0&quot;"
+                  moduleName = "StellarCram"
+                  urlString = "file:///Users/david/Desktop/MyGames/StellarCram2/StellarCram/SCGameCenterManager.swift"
+                  timestampString = "432481680.809978"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "301"
+                  endingLineNumber = "301"
+                  offsetFromSymbolStart = "446">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StellarCram.SCGameCenterManager.(reconnectToMatch (StellarCram.SCGameCenterManager) -&gt; (ObjectiveC.GKMatch, playerName : Swift.String) -&gt; ()).(closure #1) with unmangled suffix &quot;_promote0&quot;"
+                  moduleName = "StellarCram"
+                  urlString = "file:///Users/david/Desktop/MyGames/StellarCram2/StellarCram/SCGameCenterManager.swift"
+                  timestampString = "432481680.810178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "301"
+                  endingLineNumber = "301"
+                  offsetFromSymbolStart = "5828">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
