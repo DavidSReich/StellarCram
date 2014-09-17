@@ -30,6 +30,8 @@
 		634E0549198CAB6C009625C6 /* checkmark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 634E0548198CAB6C009625C6 /* checkmark-50.png */; };
 		634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E054A198CBE33009625C6 /* SCBoardView.swift */; };
 		6378AE921997215800B5E2E7 /* SCPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6378AE911997215800B5E2E7 /* SCPlayer.swift */; };
+		63854BC019C919F800AF645F /* StellarSoftware_transparent_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 63854BBF19C919F800AF645F /* StellarSoftware_transparent_transparent.png */; };
+		63854BC219C9358E00AF645F /* SCInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63854BC119C9358E00AF645F /* SCInfoViewController.swift */; };
 		63BAFB29198E7EF900A3F007 /* SCCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BAFB28198E7EF900A3F007 /* SCCellView.swift */; };
 		63CD9E9A19907F30003482DA /* SCPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CD9E9919907F30003482DA /* SCPlayView.swift */; };
 		63E3125D19A47D2500A741E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E3125C19A47D2500A741E1 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -74,6 +76,8 @@
 		634E0548198CAB6C009625C6 /* checkmark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-50.png"; sourceTree = "<group>"; };
 		634E054A198CBE33009625C6 /* SCBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCBoardView.swift; sourceTree = "<group>"; };
 		6378AE911997215800B5E2E7 /* SCPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPlayer.swift; sourceTree = "<group>"; };
+		63854BBF19C919F800AF645F /* StellarSoftware_transparent_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StellarSoftware_transparent_transparent.png; sourceTree = "<group>"; };
+		63854BC119C9358E00AF645F /* SCInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCInfoViewController.swift; sourceTree = "<group>"; };
 		63BAFB28198E7EF900A3F007 /* SCCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCellView.swift; sourceTree = "<group>"; };
 		63CD9E9919907F30003482DA /* SCPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCPlayView.swift; sourceTree = "<group>"; };
 		63E3125C19A47D2500A741E1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -132,6 +136,7 @@
 				63CD9E9919907F30003482DA /* SCPlayView.swift */,
 				6378AE911997215800B5E2E7 /* SCPlayer.swift */,
 				63E3125E19A4808B00A741E1 /* SCGameCenterManager.swift */,
+				63854BC119C9358E00AF645F /* SCInfoViewController.swift */,
 			);
 			path = Cram;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 		634E053D198C994F009625C6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				63854BBF19C919F800AF645F /* StellarSoftware_transparent_transparent.png */,
 				634E0544198CAB55009625C6 /* checkmark-25.png */,
 				634E0546198CAB5F009625C6 /* checkmark-32.png */,
 				634E0548198CAB6C009625C6 /* checkmark-50.png */,
@@ -275,6 +281,7 @@
 				634E0536198C9942009625C6 /* about-50.png in Resources */,
 				634E0537198C9942009625C6 /* org_unit-25.png in Resources */,
 				634E0547198CAB5F009625C6 /* checkmark-32.png in Resources */,
+				63854BC019C919F800AF645F /* StellarSoftware_transparent_transparent.png in Resources */,
 				634E0541198CAB2C009625C6 /* plus-32.png in Resources */,
 				634E053C198C9942009625C6 /* process-50.png in Resources */,
 				634E053A198C9942009625C6 /* process-25.png in Resources */,
@@ -311,6 +318,7 @@
 				634E054B198CBE33009625C6 /* SCBoardView.swift in Sources */,
 				634E0528198C8C45009625C6 /* SCMainViewController.swift in Sources */,
 				6378AE921997215800B5E2E7 /* SCPlayer.swift in Sources */,
+				63854BC219C9358E00AF645F /* SCInfoViewController.swift in Sources */,
 				63CD9E9A19907F30003482DA /* SCPlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
