@@ -7,209 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--zInfo View Controller-->
-        <scene sceneID="DlY-V1-t9D">
-            <objects>
-                <viewController storyboardIdentifier="zInfoViewController" id="GgL-S8-HrV" userLabel="zInfo View Controller" customClass="SCInfoViewController" customModule="Cram" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gsd-pJ-y8y"/>
-                        <viewControllerLayoutGuide type="bottom" id="W55-xI-g88"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iUa-OU-g6Q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" tag="-1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Canvas1a_offwhite_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="qKu-rJ-Pvo">
-                                <rect key="frame" x="-4" y="-15" width="608" height="620"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2014 Stellar Software Pty Ltd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykf-he-jH0">
-                                <rect key="frame" x="40" y="466" width="290" height="19"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designed and created by David Reich" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjI-b8-qKH">
-                                <rect key="frame" x="40" y="444" width="249" height="19"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G47-ie-raf">
-                                <rect key="frame" x="523" y="545" width="37" height="30"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="26"/>
-                                <state key="normal" title="OK">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="okButtonTouched:" destination="GgL-S8-HrV" eventType="touchUpInside" id="Ndq-CN-6pR"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StellarSoftware_transparent_transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="jVh-xa-fhw">
-                                <rect key="frame" x="16" y="32" width="246" height="185"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="246" id="2Cw-CS-qQm"/>
-                                    <constraint firstAttribute="height" constant="185" id="QJe-zN-uUF"/>
-                                    <constraint firstAttribute="width" secondItem="jVh-xa-fhw" secondAttribute="height" multiplier="246:185" id="hUA-g1-bJH"/>
-                                </constraints>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="11" y="-19" width="308" height="251"/>
-                                </variation>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab bar icons by ... Icons8 http://icons8.com/license" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oV1-kA-DVO">
-                                <rect key="frame" x="307" y="485" width="253" height="14"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j83-4U-VGa">
-                                <rect key="frame" x="345" y="95" width="147" height="81"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="97" id="AGu-q5-DuU"/>
-                                    <constraint firstAttribute="width" constant="161" id="fqE-3J-d7h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="62"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="AGu-q5-DuU"/>
-                                        <exclude reference="fqE-3J-d7h"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="AGu-q5-DuU"/>
-                                        <include reference="fqE-3J-d7h"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap an edge between two squares to place a piece on both squares." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRw-tT-2Jv">
-                                <rect key="frame" x="16" y="221" width="568" height="62"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="7z5-Xc-YJd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="7z5-Xc-YJd"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You can play horizontally or vertically." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfY-Ol-K6X">
-                                <rect key="frame" x="16" y="287" width="568" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="bPI-fp-Ou1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The last player to go LOSES!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDB-Ln-Tli">
-                                <rect key="frame" x="16" y="322" width="568" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="KLQ-Oz-hFA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9a-Xe-yQx" userLabel="Rule line label">
-                                <rect key="frame" x="16" y="359" width="568" height="1"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="gZ4-SX-186"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You can play with two players or against the AI." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZo-xQ-kvC">
-                                <rect key="frame" x="16" y="366" width="568" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="8wq-qw-Pni"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Or you can play through the Game Center." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBi-aD-p1O">
-                                <rect key="frame" x="16" y="401" width="568" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="c3G-Wl-1FC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qjI-b8-qKH" firstAttribute="leading" secondItem="iUa-OU-g6Q" secondAttribute="leadingMargin" constant="24" id="0F7-Zt-jkR"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="YDB-Ln-Tli" secondAttribute="leading" id="1DC-f7-2fI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="oV1-kA-DVO" secondAttribute="trailing" constant="24" id="8kq-W0-uRh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="j83-4U-VGa" secondAttribute="trailing" constant="92" id="9BH-WD-GJH"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="trailing" secondItem="ZZo-xQ-kvC" secondAttribute="trailing" id="Bgr-WQ-fGu"/>
-                            <constraint firstItem="OfY-Ol-K6X" firstAttribute="top" secondItem="vRw-tT-2Jv" secondAttribute="bottom" constant="4" id="CYm-Tr-a8Y">
-                                <variation key="heightClass=regular-widthClass=regular" constant="5"/>
-                            </constraint>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="centerX" secondItem="qKu-rJ-Pvo" secondAttribute="centerX" id="ETg-es-XCh"/>
-                            <constraint firstItem="qKu-rJ-Pvo" firstAttribute="top" secondItem="iUa-OU-g6Q" secondAttribute="topMargin" constant="-15" id="FVL-F7-Gm3"/>
-                            <constraint firstItem="jVh-xa-fhw" firstAttribute="top" secondItem="iUa-OU-g6Q" secondAttribute="topMargin" constant="32" id="FVL-ko-i4K"/>
-                            <constraint firstItem="YDB-Ln-Tli" firstAttribute="top" secondItem="OfY-Ol-K6X" secondAttribute="bottom" constant="4" id="KY7-oM-cvd"/>
-                            <constraint firstAttribute="centerY" secondItem="K9a-Xe-yQx" secondAttribute="centerY" constant="-59" id="Krw-Td-EXZ">
-                                <variation key="heightClass=regular-widthClass=regular" constant="40.5"/>
-                            </constraint>
-                            <constraint firstItem="vRw-tT-2Jv" firstAttribute="top" secondItem="jVh-xa-fhw" secondAttribute="bottom" constant="4" id="M86-fx-Ezl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qKu-rJ-Pvo" secondAttribute="trailing" constant="-20" id="NaO-vn-UHR"/>
-                            <constraint firstItem="oV1-kA-DVO" firstAttribute="top" secondItem="Ykf-he-jH0" secondAttribute="bottom" id="QsA-jS-bMF"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="top" secondItem="ZZo-xQ-kvC" secondAttribute="bottom" constant="4" id="XiI-Pu-qY6"/>
-                            <constraint firstItem="ZZo-xQ-kvC" firstAttribute="top" secondItem="K9a-Xe-yQx" secondAttribute="bottom" constant="6" id="Xm8-mW-nuZ"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="trailing" secondItem="OfY-Ol-K6X" secondAttribute="trailing" id="Zng-EK-MqY"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="ZZo-xQ-kvC" secondAttribute="leading" id="avi-Lf-Wwa"/>
-                            <constraint firstItem="j83-4U-VGa" firstAttribute="top" secondItem="gsd-pJ-y8y" secondAttribute="bottom" constant="75" id="bK9-AR-s2H"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="K9a-Xe-yQx" secondAttribute="leading" id="chO-sm-vMV"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="OfY-Ol-K6X" secondAttribute="leading" id="eUf-OA-oT0"/>
-                            <constraint firstItem="Ykf-he-jH0" firstAttribute="leading" secondItem="iUa-OU-g6Q" secondAttribute="leadingMargin" constant="24" id="hHr-9h-AFd"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="vRw-tT-2Jv" secondAttribute="leading" id="i6V-IM-NGE"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="trailing" secondItem="K9a-Xe-yQx" secondAttribute="trailing" id="j0A-ER-VSy"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="leading" secondItem="jVh-xa-fhw" secondAttribute="leading" id="j2g-VF-8df"/>
-                            <constraint firstItem="Ykf-he-jH0" firstAttribute="top" secondItem="qjI-b8-qKH" secondAttribute="bottom" constant="3" id="lHV-jH-AT7"/>
-                            <constraint firstItem="qKu-rJ-Pvo" firstAttribute="leading" secondItem="iUa-OU-g6Q" secondAttribute="leadingMargin" constant="-20" id="lPI-Tb-1BJ"/>
-                            <constraint firstItem="OfY-Ol-K6X" firstAttribute="top" secondItem="vRw-tT-2Jv" secondAttribute="bottom" constant="4" id="nOS-t7-hSx"/>
-                            <constraint firstItem="qjI-b8-qKH" firstAttribute="top" secondItem="IBi-aD-p1O" secondAttribute="bottom" constant="43" id="oM4-yp-wFi"/>
-                            <constraint firstItem="jVh-xa-fhw" firstAttribute="leading" secondItem="iUa-OU-g6Q" secondAttribute="leadingMargin" id="p8o-ga-RAH">
-                                <variation key="widthClass=compact" constant="-1"/>
-                            </constraint>
-                            <constraint firstItem="K9a-Xe-yQx" firstAttribute="top" secondItem="YDB-Ln-Tli" secondAttribute="bottom" constant="6" id="qdq-ok-fLK"/>
-                            <constraint firstItem="j83-4U-VGa" firstAttribute="leading" secondItem="jVh-xa-fhw" secondAttribute="trailing" constant="83" id="rpi-bg-qeh"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="trailing" secondItem="YDB-Ln-Tli" secondAttribute="trailing" id="s64-97-4Vh"/>
-                            <constraint firstItem="IBi-aD-p1O" firstAttribute="trailing" secondItem="vRw-tT-2Jv" secondAttribute="trailing" id="vla-Nb-x8S"/>
-                            <constraint firstItem="W55-xI-g88" firstAttribute="top" secondItem="qKu-rJ-Pvo" secondAttribute="bottom" constant="-5" id="wEe-rU-h8a"/>
-                            <constraint firstItem="W55-xI-g88" firstAttribute="top" secondItem="G47-ie-raf" secondAttribute="bottom" constant="25" id="wvU-vA-K7e">
-                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="G47-ie-raf" secondAttribute="trailing" constant="24" id="zJ1-6Z-Nod"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="nOS-t7-hSx"/>
-                                <exclude reference="j2g-VF-8df"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <exclude reference="M86-fx-Ezl"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jWx-re-gYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1383" y="99.75"/>
-        </scene>
         <!--Info View Controller-->
         <scene sceneID="fST-WX-Riv">
             <objects>
@@ -278,7 +75,6 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="okButtonTouched:" destination="GgL-S8-HrV" eventType="touchUpInside" id="BJx-4I-1Ok"/>
                                     <action selector="okButtonTouched:" destination="jEO-Of-o6B" eventType="touchUpInside" id="cvH-cv-u1W"/>
                                 </connections>
                             </button>
@@ -307,9 +103,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
-                                            <rect key="frame" x="10" y="172" width="358" height="93"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can play horizontally or vertically." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRu-fm-SmY">
@@ -322,9 +117,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
-                                            <rect key="frame" x="10" y="269" width="358" height="21"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The last player to go LOSES!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vf3-vt-7Tb">
@@ -337,9 +131,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
-                                            <rect key="frame" x="10" y="294" width="358" height="21"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="568" translatesAutoresizingMaskIntoConstraints="NO" id="s4c-ic-aVu" userLabel="Horizontal Line Label">
@@ -351,9 +144,6 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="10" y="320" width="348" height="2"/>
-                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can play with two players or against the AI." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3Y-74-UH8">
                                         <rect key="frame" x="20" y="112" width="548" height="31"/>
@@ -365,9 +155,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
-                                            <rect key="frame" x="10" y="327" width="358" height="42"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or you can play through the Game Center." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sM-NB-rUs">
@@ -380,9 +169,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.47710424270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="16"/>
-                                            <rect key="frame" x="10" y="373" width="358" height="21"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -509,16 +297,16 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vit-Ag-kdj" userLabel="OuterView">
-                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="524"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Display messages for the player!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Di5-s5-aJn" userLabel="Player Prompt">
-                                        <rect key="frame" x="20" y="8" width="560" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display messages for the player!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Di5-s5-aJn" userLabel="Player Prompt">
+                                        <rect key="frame" x="20" y="8" width="560" height="76"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="27"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-jR-iCc" userLabel="BoardView" customClass="SCBoardView" customModule="Cram" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="-20" width="540" height="540"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-jR-iCc" userLabel="BoardView" customClass="SCBoardView" customModule="Cram" customModuleProvider="target">
+                                        <rect key="frame" x="130" y="92" width="340" height="340"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -533,32 +321,27 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                 <constraints>
                                     <constraint firstItem="jCZ-jR-iCc" firstAttribute="centerY" secondItem="Vit-Ag-kdj" secondAttribute="centerY" id="DQc-6p-8UW"/>
                                     <constraint firstAttribute="trailing" secondItem="Di5-s5-aJn" secondAttribute="trailing" constant="20" id="Mn7-4p-w2P"/>
-                                    <constraint firstAttribute="trailing" secondItem="jCZ-jR-iCc" secondAttribute="trailing" constant="30" id="QME-Kj-gia"/>
-                                    <constraint firstItem="jCZ-jR-iCc" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="30" id="bs6-oT-gGg"/>
+                                    <constraint firstAttribute="trailing" secondItem="jCZ-jR-iCc" secondAttribute="trailing" constant="130" id="QME-Kj-gia">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                    </constraint>
+                                    <constraint firstItem="jCZ-jR-iCc" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="130" id="bs6-oT-gGg">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                    </constraint>
                                     <constraint firstItem="Di5-s5-aJn" firstAttribute="top" secondItem="Vit-Ag-kdj" secondAttribute="top" constant="8" id="djY-sd-5eM"/>
                                     <constraint firstItem="Di5-s5-aJn" firstAttribute="leading" secondItem="Vit-Ag-kdj" secondAttribute="leading" constant="20" id="hd4-Ip-4IR"/>
-                                    <constraint firstItem="Di5-s5-aJn" firstAttribute="bottom" secondItem="jCZ-jR-iCc" secondAttribute="top" constant="67" id="s39-k3-fyB">
-                                        <variation key="heightClass=regular" constant="-8"/>
-                                    </constraint>
+                                    <constraint firstItem="Di5-s5-aJn" firstAttribute="bottom" secondItem="jCZ-jR-iCc" secondAttribute="top" constant="-8" id="s39-k3-fyB"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="s39-k3-fyB"/>
-                                        <exclude reference="DQc-6p-8UW"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="s39-k3-fyB"/>
-                                        <include reference="DQc-6p-8UW"/>
-                                    </mask>
-                                </variation>
+                                <variation key="heightClass=regular"/>
                             </view>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sop-Q8-zhT">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                            <tabBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sop-Q8-zhT">
+                                <rect key="frame" x="0.0" y="544" width="600" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="z4G-W4-Ow7"/>
+                                    <constraint firstAttribute="height" constant="56" id="hqx-Bd-Ms9">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="49"/>
+                                    </constraint>
                                 </constraints>
                                 <items>
                                     <tabBarItem title="New" image="plus-25.png" id="I3e-Aa-jfE"/>
@@ -567,15 +350,8 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                                     <tabBarItem title="" id="CpY-4v-UNP" userLabel="spacer"/>
                                     <tabBarItem title="Confirm Move" image="checkmark-25.png" id="yYm-gT-vAQ"/>
                                 </items>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="z4G-W4-Ow7"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="z4G-W4-Ow7"/>
-                                    </mask>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="744" width="800" height="56"/>
                                 </variation>
                             </tabBar>
                         </subviews>
@@ -586,7 +362,7 @@ Double-tap the grey marker to confirm - or tap Confirm Move - and the marker wil
                             <constraint firstAttribute="trailing" secondItem="Vit-Ag-kdj" secondAttribute="trailing" id="DaQ-Nh-d6d"/>
                             <constraint firstItem="ce7-5K-GxS" firstAttribute="top" secondItem="sop-Q8-zhT" secondAttribute="bottom" id="FMK-0w-hus"/>
                             <constraint firstItem="ce7-5K-GxS" firstAttribute="top" secondItem="4VN-zw-xjF" secondAttribute="bottom" id="QOR-IF-gfi"/>
-                            <constraint firstItem="Vit-Ag-kdj" firstAttribute="bottom" secondItem="sop-Q8-zhT" secondAttribute="top" id="ULC-hz-MIV"/>
+                            <constraint firstItem="sop-Q8-zhT" firstAttribute="top" secondItem="Vit-Ag-kdj" secondAttribute="bottom" id="YNZ-BK-Zj0"/>
                             <constraint firstItem="4VN-zw-xjF" firstAttribute="leading" secondItem="7V0-ZU-g3s" secondAttribute="leading" id="dFa-xM-O3m"/>
                             <constraint firstAttribute="trailing" secondItem="sop-Q8-zhT" secondAttribute="trailing" id="fX7-wb-xDS"/>
                             <constraint firstAttribute="trailing" secondItem="4VN-zw-xjF" secondAttribute="trailing" id="hkL-F7-72W"/>
