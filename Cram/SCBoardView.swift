@@ -38,52 +38,6 @@ class SCBoardView : UIView {
     
     func setupBoard(viewController: SCMainViewController) {
         mainViewController = viewController
-#if false
-        var parent: UIView? = self
-        do {
-            NSLog("AAA: %@ (%f %f; %f %f)", parent!, parent!.bounds.origin.x, parent!.bounds.origin.y, parent!.bounds.size.width, parent!.bounds.size.height)
-            let parent2 = parent?.superview
-            if (parent2 != nil) {
-                    parent = parent2
-                }
-            else {
-                    parent = nil
-                }
-        } while (parent != nil);
-
-#if true
-        var newBounds = frame
-        newBounds.origin.x = 0
-        newBounds.origin.y = 0
-        superview?.superview?.superview?.bounds = newBounds
-        superview?.superview?.bounds = newBounds
-        superview?.bounds = newBounds
-        bounds = newBounds
-#else
-        let fullScreen = UIScreen.mainScreen().bounds
-        NSLog("FULLSCREEN: (%f %f; %f %f)", fullScreen.origin.x, fullScreen.origin.y, fullScreen.size.width, fullScreen.size.height)
-        superview?.superview?.superview?.frame = fullScreen
-        superview?.superview?.frame = fullScreen
-        superview?.frame = fullScreen
-        frame = fullScreen
-        superview?.superview?.superview?.bounds = fullScreen
-        superview?.superview?.bounds = fullScreen
-        superview?.bounds = fullScreen
-        bounds = fullScreen
-#endif
-
-        parent = self
-        do {
-            NSLog("%BBB: %@ (%f %f; %f %f)", parent!, parent!.bounds.origin.x, parent!.bounds.origin.y, parent!.bounds.size.width, parent!.bounds.size.height)
-            let parent2 = parent?.superview
-            if (parent2 != nil) {
-                parent = parent2
-            }
-            else {
-                parent = nil
-            }
-        } while (parent != nil);
-#endif
 
         userInteractionEnabled = true
         

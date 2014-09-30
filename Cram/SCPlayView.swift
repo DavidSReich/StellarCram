@@ -60,40 +60,6 @@ class SCPlayView : UIImageView {
         //close the path
         CGPathCloseSubpath(hotSpotPath);
 
-#if false
-    if orientation == PlayOrientation.Vertical {
-        //set the image context
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(frame.size.width, frame.size.height), false, 0.0);
-        
-        //use the the image that is going to be drawn on as the receiver
-        var img = image
-        img?.drawInRect(CGRectMake(0.0, 0.0, frame.size.width, frame.size.height))
-        
-        var context = UIGraphicsGetCurrentContext()
-        UIGraphicsPushContext(context)
-        
-        CGContextSetLineWidth(context, 1);
-        CGContextSetStrokeColorWithColor(context, UIColor.greenColor().CGColor)
-        CGContextSetFillColorWithColor(context, UIColor.redColor().CGColor)
-
-        CGContextBeginPath(context);
-        CGContextMoveToPoint(context, frame.size.width / 4, frame.size.height / 2);
-        CGContextAddLineToPoint(context, frame.size.width / 2, 0);
-        CGContextAddLineToPoint(context, frame.size.width - frame.size.width / 4, frame.size.height / 2);
-        CGContextAddLineToPoint(context, frame.size.width / 2, frame.size.height);
-
-        //close the path
-        CGContextClosePath(context);
-        CGContextDrawPath(context, kCGPathFillStroke);
-
-        UIGraphicsPopContext();
-        
-        //get the new image
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-    }
-#endif
 //        let rcLabel = UILabel(frame: bounds)
 //        rcLabel.textAlignment = NSTextAlignment.Center;
 //        rcLabel.textColor = UIColor.whiteColor()

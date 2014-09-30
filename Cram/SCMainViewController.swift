@@ -29,9 +29,6 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
         // Do any additional setup after loading the view, typically from a nibself.
         tabBar.delegate = self
 
-////        var gcViewController: GKGameCenterViewController = GKGameCenterViewController()
-////        gcViewController.gameCenterDelegate = self
-//        authenticateLocalPlayer()
         gameCenterManager = SCGameCenterManager(theViewController: self)
         
     }
@@ -40,9 +37,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
         super.viewDidAppear(animated)
         // Do any additional setup after loading the view, typically from a nibself.
         boardView.setupPlayers(SCBoardView.LocationType.Local, otherPlayerName: nil)
-//        boardView.setupPlayers(SCBoardView.LocationType.AI)
         boardView.setupBoard(self)
-//        playerPrompt.font = UIFont(name: "Verdana", size:playerPrompt.frame.size.width * 0.08);
         tabBar.selectedImageTintColor = UIColor.grayColor()
     }
     
@@ -98,7 +93,6 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
             boardView.playerCommitted()
         } else if item == infoButton {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//            let infoViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewController") as UIViewController
             let infoViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewController") as SCInfoViewController
             infoViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
             infoViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve

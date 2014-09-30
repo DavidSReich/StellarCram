@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+
+        //iPhone 4 loads slower
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad) && (UIScreen().bounds.size.height < 500) {
+            sleep(1)
+        } else {
+            sleep(2)
+        }
         return true
     }
 

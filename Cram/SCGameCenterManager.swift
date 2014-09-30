@@ -45,7 +45,6 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
         havePlayer = false
         super.init()
         NSNotificationCenter.defaultCenter().addObserverForName(GKPlayerDidChangeNotificationName, object: nil, queue: NSOperationQueue.mainQueue()) { _ in self.authenticationChanged()}
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("authenticationChanged:"), name: GKPlayerDidChangeNotificationName, object: nil)
     }
 
     deinit {
@@ -58,13 +57,12 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
             println("Authentication changed: Player is Authenticated")
             self.havePlayer = true
         } else {
+            //GC still has bug - never sets .authenticated = true
             //popupGCNotAvailable()
             println("Authentication changed: Player Still Not Authenticated")
             self.havePlayer = false
             self.havePlayer = true  //should be false!
         }
-
-        //??requestAMatch()
     }
 
     func authenticateLocalPlayer() {
@@ -79,7 +77,7 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
                     println("Player is Authenticated")
                     self.havePlayer = true
                 } else {
-//                    self.popupGCNotAvailable()
+                    //self.popupGCNotAvailable()
                     println("Player Still Not Authenticated")
                     self.havePlayer = false
                     self.havePlayer = true  //should be false!
@@ -140,13 +138,11 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
             GKPlayer.loadPlayersForIdentifiers(match.playerIDs, withCompletionHandler: {(players: [AnyObject]!, error: NSError!) in
                 let otherPlayer = players[0] as GKPlayer
                 self.playerName = otherPlayer.displayName.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "\u{200e}\u{201c}\u{201d}\u{202a}\u{202c}"))
-//                var alertBox = UIAlertView(title: "OtherPlayer", message: "ID:Name: \(match.playerIDs[0]) : \(playerName) ", delegate: nil, cancelButtonTitle: "Cancel")
-//                alertBox.show()
                 self.matchStarted = true
                 self.mainViewController?.boardView.startRemoteGame(self.playerName)
             })
-            keepAlive = true
-            sendKeepAliveMessage()  //this will never stop
+//            keepAlive = true
+//            sendKeepAliveMessage()  //this will never stop
         }
     }
     
