@@ -183,14 +183,14 @@ class SCBoardView : UIView {
 */
     //used by current (local) player so board will be marked
     func playerTapped(newPlay: SCPlayView) {
-        if currentPlay? != nil {
+        if currentPlay != nil {
             currentPlay?.setState(SCPlayView.PlayState.Clear)
             currentPlay = nil
         }
         
         currentPlay = newPlay
 
-        if currentPlay? != nil {
+        if currentPlay != nil {
             currentPlay?.setState(SCPlayView.PlayState.Tentative)
         }
 
@@ -209,7 +209,7 @@ class SCBoardView : UIView {
     //a remote player will have called playerTapped() but this is not transmitted to the other player, so the playerCommitted() must
     //also invoke playerTapped ... there should be no "cost" to calling playerTapped() twice
     func playerCommitted() {
-        if currentPlay? == nil {
+        if currentPlay == nil {
             return
         }
 

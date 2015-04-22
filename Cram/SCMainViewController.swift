@@ -20,6 +20,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
     @IBOutlet weak var confirmMoveButton: UITabBarItem!
     @IBOutlet weak var playerPrompt: UILabel!
     var gameCenterManager: SCGameCenterManager! = nil
+    var firstTime : Bool = true
 
     let kNewGameCommand = 0
     let kRematchCommand = 1
@@ -35,10 +36,13 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        // Do any additional setup after loading the view, typically from a nibself.
-        boardView.setupPlayers(SCBoardView.LocationType.Local, otherPlayerName: nil)
-        boardView.setupBoard(self)
-        tabBar.selectedImageTintColor = UIColor.grayColor()
+        if firstTime {
+            // Do any additional setup after loading the view, typically from a nibself.
+            boardView.setupPlayers(SCBoardView.LocationType.Local, otherPlayerName: nil)
+            boardView.setupBoard(self)
+            tabBar.selectedImageTintColor = UIColor.grayColor()
+            firstTime = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +50,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
         // Dispose of any resources that can be recreated.
     }
 
-    func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!) {
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         if boardView.insideGame && !boardView.gameOver {
             if item == newButton || item == rematchButton {
                 //ask about abandoning game
@@ -93,7 +97,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
             boardView.playerCommitted()
         } else if item == infoButton {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let infoViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewController") as SCInfoViewController
+            let infoViewController = storyBoard.instantiateViewControllerWithIdentifier("InfoViewController") as! SCInfoViewController
             infoViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
             infoViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
             self.presentViewController(infoViewController, animated: true, completion: nil)
@@ -152,7 +156,7 @@ class SCMainViewController: UIViewController, UITabBarDelegate, UIActionSheetDel
         playerPrompt.text = prompt
     }
 
-    func actionSheet(theActionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(theActionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if (buttonIndex == 0) {
             self.boardView.startLocalGame()
         } else if buttonIndex == 1 {

@@ -113,13 +113,17 @@ class SCPlayView : UIImageView {
     }
 
     func playTapped(recognizer: UITapGestureRecognizer) {
-        boardView?.playerTapped(self)
-        NSLog("Tapped in PlayView")
+        if recognizer.state == UIGestureRecognizerState.Ended {
+            boardView?.playerTapped(self)
+            NSLog("Tapped in PlayView")
+        }
     }
     
     func playDoubleTapped(recognizer: UITapGestureRecognizer) {
-        boardView?.playerCommitted()
-        NSLog("Doubletapped in PlayView")
+        if recognizer.state == UIGestureRecognizerState.Ended {
+            boardView?.playerCommitted()
+            NSLog("Doubletapped in PlayView")
+        }
     }
     
     func updatePlayView() {

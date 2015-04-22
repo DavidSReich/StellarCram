@@ -114,7 +114,7 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
     //GKMatchmakerViewControllerDelegate
     func matchmakerViewControllerWasCancelled(viewController: GKMatchmakerViewController!) {
         NSLog("CANCELLEDCANCELLED")
-        viewController.dismissViewControllerAnimated(true, nil)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
         if mainViewController?.boardView.gameType == SCBoardView.LocationType.Remote {  //can't go back to remote if we cancel or fail here
             mainViewController?.boardView.startLocalGame()
         }
@@ -122,7 +122,7 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
 
     func matchmakerViewController(viewController: GKMatchmakerViewController!, didFailWithError error: NSError!) {
         NSLog("FAILEDFAILED")
-        viewController.dismissViewControllerAnimated(true, nil)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
         if mainViewController?.boardView.gameType == SCBoardView.LocationType.Remote {  //can't go back to remote if we cancel or fail here
             mainViewController?.boardView.startLocalGame()
         }
@@ -130,13 +130,13 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
 
     func matchmakerViewController(viewController: GKMatchmakerViewController!, didFindMatch match: GKMatch!) {
         NSLog("MATCHMATCH")
-        viewController.dismissViewControllerAnimated(true, nil)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
         theMatch = match
         match.delegate = self
 //        if !matchStarted && match.expectedPlayerCount == 0 {
         if match.expectedPlayerCount == 0 {
             GKPlayer.loadPlayersForIdentifiers(match.playerIDs, withCompletionHandler: {(players: [AnyObject]!, error: NSError!) in
-                let otherPlayer = players[0] as GKPlayer
+                let otherPlayer = players[0] as! GKPlayer
                 self.playerName = otherPlayer.displayName.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "\u{200e}\u{201c}\u{201d}\u{202a}\u{202c}"))
                 self.matchStarted = true
                 self.mainViewController?.boardView.startRemoteGame(self.playerName)
@@ -148,12 +148,12 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
     
     func matchmakerViewController(viewController: GKMatchmakerViewController!, hostedPlayerDidAccept player: GKPlayer!) {
         NSLog("ACCEPTEDACCEPTED")
-        viewController.dismissViewControllerAnimated(true, nil)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func matchmakerViewController(viewController: GKMatchmakerViewController!, didFindHostedPlayers players: [AnyObject]!) {
         NSLog("HOSTEDHOSTED")
-        viewController.dismissViewControllerAnimated(true, nil)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
     //GKMatchDelegate
@@ -274,7 +274,7 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
     }
     
     func sendGameMessage() {
-        turnData.replaceBytesInRange(NSMakeRange(0, sizeof(SCCramTurnMessage)), withBytes: &turnMessage, length: sizeof(SCCramTurnMessage))
+        turnData!.replaceBytesInRange(NSMakeRange(0, sizeof(SCCramTurnMessage)), withBytes: &turnMessage, length: sizeof(SCCramTurnMessage))
         var sendError: NSErrorPointer = nil
         var rval = theMatch?.sendDataToAllPlayers(turnData, withDataMode: GKMatchSendDataMode.Reliable, error: sendError)
         if rval == false {
@@ -311,7 +311,7 @@ class SCGameCenterManager: NSObject, GKMatchmakerViewControllerDelegate, GKMatch
                         if error == nil {
                             self.theMatch = newMatch
                             newMatch.delegate = self
-                            let otherPlayer = players[0] as GKPlayer
+                            let otherPlayer = players[0] as! GKPlayer
                             self.playerName = otherPlayer.displayName.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "\u{200e}\u{201c}\u{201d}\u{202a}\u{202c}"))
                             self.timedAlert("Successfully reconnected with \(playerName)", seconds: 1.0)
                         } else {
